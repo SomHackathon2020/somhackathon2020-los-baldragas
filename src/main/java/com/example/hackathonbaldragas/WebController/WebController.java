@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.client.RestTemplate;
 
 @Controller
@@ -34,5 +35,14 @@ public class WebController {
         model.addAttribute("requestsList", controllerDAO.findAllRequests());
 
         return "showRequests";
+    }
+
+    @GetMapping("showRequest/{idRequest}")
+    public String showRequest(Model model, @PathVariable int idRequest){
+
+        model.addAttribute("creator", controllerDAO.getRequestCreator(idRequest));
+        model.addAttribute("request", controllerDAO.findRequest(idRequest));
+
+        return "request";
     }
 }
