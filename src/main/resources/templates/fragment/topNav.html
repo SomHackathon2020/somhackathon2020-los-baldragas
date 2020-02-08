@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" type="text/css" href="/style/style.css" />
+    <meta charset="UTF-8">
+    <title>TopNav</title>
+</head>
+<body>
+<div id="topnav" class="topnav" th:fragment="topNav">
+    <a id="home" th:href="|/user/profile|">Casa</a>
+    <a id="request" th:href="|/user/profile|">Peticions</a>
+    <a id="link" th:href="|/searchUsers|">Links</a>
+    <a id="ubication" th:href="|/searchEvents/Web|">Ubicacions</a>
+    <a id="timetable" th:href="|/createEvent|">Horari de busos</a>
+    <a id="games" th:href="|/messages|">Jocs</a>
+    <a id="profile" th:href="|/user/profile|">Perfil</a>
+    <a href="javascript: document.logoutForm.submit()" style="float:right">Logout</a>
+    <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
+        <input hidden type="submit" value="Sign Out"/>
+    </form>
+</div>
+</body>
+</html>
