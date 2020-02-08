@@ -18,6 +18,7 @@ public class MilestoneDAO {
     private final String INSERT = "insert into milestones (dateinitial, dateend, target, users_mail) values(?,?,?,?)";
     private final String FIND_BY_STARTDATE = "select * from milestones where dateinitial = ? AND users_mail = ?";
     private final String FIND_BY_ENDDATE = "select * from milestones where dateend = ? AND users_mail = ?";
+    private final String FIND_BY_USER = "select * from milestones where users_mail = ?";
 
     private final RowMapper<Milestone> mapper = (resultSet, i) -> {
         return new Milestone.MilestoneBuilder()
@@ -40,7 +41,9 @@ public class MilestoneDAO {
     public List<Milestone> findAll() {
         return jdbcTemplate.query(FIND_ALL, new BeanPropertyRowMapper<>(Milestone.class));
     }
-
+    public List<Milestone> findMilestonesByUser(String mail){
+        return jdbcTemplate.query(FIND_BY_USER, new BeanPropertyRowMapper<>(Milestone.class), mail);
+    }
     public Milestone findByStart(LocalDate start, String mail) { return jdbcTemplate.queryForObject(FIND_BY_STARTDATE, new Object[]{start, mail}, mapper);}
     public Milestone findByEnd(LocalDate end, String mail) { return jdbcTemplate.queryForObject(FIND_BY_ENDDATE, new Object[]{end, mail}, mapper);};
 

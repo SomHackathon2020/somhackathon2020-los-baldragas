@@ -146,6 +146,11 @@ public class WebController {
         return "telefons";
     }
 
+    @GetMapping("milestones/{user}")
+    public String milestones(@PathVariable String user, Model model) {
+        model.addAttribute("milestones",controllerDAO.findMilestonesByUser(user));
+        return "milestones";
+    }
 
     @GetMapping("/map/CAPS")
     public String mapCaps(Model model){
