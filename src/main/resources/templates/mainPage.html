@@ -3,29 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <title>Main Page</title>
-    <link href="/css/bootstrap.css" rel="stylesheet" th:href="@{/css/bootstrap.css}">
-    <!--meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script-->
-
+    <link rel="stylesheet" type="text/css" href="/style/style.css" />
 </head>
 <body>
-    <nav class="navbar navbar-default">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="mainPage">WebSiteName</a>
-            </div>
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="mainPage">Home</a></li>
-                <li ><a href="#">Page 1</a></li>
-                <li><a href="#">Page 2</a></li>
-                <li><a href="#">Page 3</a></li>
-            </ul>
+    <div id="header">
+        <h1>Nombre de la página web</h1>
+        <p>Pa señores mayores de 30 años.</p>
+    </div>
+    <div id="topNav" th:replace="fragment/topNav :: topNav"></div>
+    <div class="card" id="request">
+        <a th:href="|/user/profile|"><img src="/requests.png" style="width:100%">
+        <div class="container">
+            <h4><b>Peticions</b></h4>
         </div>
-    </nav>
-    <div class="container-fluid">
-        <h1>Hello World</h1>
+        </a>
+    </div>
+    <div class="card" id="link">
+        <a th:href="|/user/profile|"><img src="/link.png" style="width:100%">
+            <div class="container">
+                <h4><b>Peticions</b></h4>
+            </div>
+        </a>
+    </div>
+    <div class="card" id="location">
+        <a th:href="|/user/profile|"><img src="/location.png" style="width:100%">
+            <div class="container">
+                <h4><b>Peticions</b></h4>
+            </div>
+        </a>
+    </div>
+    <div class="card" id="timetable">
+        <a th:href="|/user/profile|"><img src="/bus.png" style="width:100%">
+            <div class="container">
+                <h4><b>Peticions</b></h4>
+            </div>
+        </a>
+    </div>
+    <div class="card" id="games">
+        <a th:href="|/user/profile|"><img src="/game.png" style="width:100%">
+            <div class="container">
+                <h4><b>Peticions</b></h4>
+            </div>
+        </a>
+    </div>
+    <div class="card" id="profile">
+        <a th:href="|/user/profile|"><img src="/profile.png" style="width:100%">
+            <div class="container">
+                <h4><b>Peticions</b></h4>
+            </div>
+        </a>
     </div>
 </body>
 </html>
