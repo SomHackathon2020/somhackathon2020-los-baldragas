@@ -2,7 +2,10 @@ package com.example.hackathonbaldragas.domain;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.time.Duration;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+import java.time.temporal.TemporalUnit;
 
 public class Milestone {
 
@@ -12,6 +15,7 @@ public class Milestone {
     private LocalDate finalDate;
     private float target;
     private String usersMail;
+    private double progress;
 
 
     public Milestone() {}
@@ -38,12 +42,10 @@ public class Milestone {
         if(o == this) return true;
         if(!(o instanceof Milestone)) return false;
         Milestone u = (Milestone) o;
-        return u.initialDate.equals(this.initialDate) && u.finalDate.equals(this.finalDate);
+        return u.initialDate.equals(this.initialDate) && u.finalDate.equals(this.finalDate) && u.usersMail.equals(this.usersMail);
     }
 
-    public LocalDate getInitialDate() {
-        return initialDate;
-    }
+    public LocalDate getInitialDate() { return initialDate;  }
 
     public LocalDate getFinalDate() {
         return finalDate;
@@ -65,6 +67,11 @@ public class Milestone {
 
     public void setUsersMail(String usersMail) { this.usersMail = usersMail; }
 
+    public void setProgress(double progress) { this.progress = progress; }
+
+    public double getProgress() { return this.progress; }
+
+    public double getProgressPercent() { return 100*this.progress/this.target; }
 
     public static class MilestoneBuilder {
         private LocalDate initialDate;
