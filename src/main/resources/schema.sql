@@ -3,7 +3,8 @@ CREATE TABLE activities (
                           timestampend      TIMESTAMP NOT NULL,
                           content           VARCHAR2(30000) NOT NULL,
                           type              VARCHAR2(30) NOT NULL,
-                          users_mail        VARCHAR2(50) NOT NULL
+                          users_mail        VARCHAR2(50) NOT NULL,
+                          id_machine        VARCHAR2(50) NOT NULL
 );
 
 ALTER TABLE activities

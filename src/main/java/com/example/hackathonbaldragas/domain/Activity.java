@@ -21,8 +21,17 @@ public class Activity {
     private String content;
     private String type;
     private String usersMail;
+    private String id_machine;
 
     public Activity() {}
+
+    public String getId_machine() {
+        return id_machine;
+    }
+
+    public void setId_machine(String id_machine) {
+        this.id_machine = id_machine;
+    }
 
     public Timestamp getTimestampInitial() { return timestampInitial; }
 
@@ -50,6 +59,7 @@ public class Activity {
         content = builder.content;
         type = builder.type;
         usersMail = builder.usersMail;
+        id_machine = builder.id_machine;
     }
 
     public double getKcal(){
@@ -112,7 +122,7 @@ public class Activity {
 
                 double deltaTime = ((timestampList.get(timestampList.size() - 1).getTime() - timestampList.get(0).getTime()) / 1000); //segundos
 
-                return((distancia / deltaTime) * 80 * (distancia / 1000)); //kcal
+                return Math.abs((distancia / deltaTime) * 80 * (distancia / 1000)); //kcal
             }
         }
         catch(Exception e){
@@ -147,6 +157,7 @@ public class Activity {
         private String content;
         private String type;
         private String usersMail;
+        private String id_machine;
 
         public ActivityBuilder() {}
 
@@ -172,6 +183,11 @@ public class Activity {
 
         public ActivityBuilder usersMail(String usersMail){
             this.usersMail = usersMail;
+            return this;
+        }
+
+        public ActivityBuilder id_machine(String id_machine){
+            this.id_machine = id_machine;
             return this;
         }
         public Activity build() {

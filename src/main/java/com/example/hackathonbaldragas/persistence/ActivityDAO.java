@@ -31,6 +31,7 @@ public class ActivityDAO {
                 .content(resultSet.getString("content"))
                 .type(resultSet.getString("type"))
                 .usersMail(resultSet.getString("users_mail"))
+                .id_machine(resultSet.getString("id_machine"))
                 .build();
     };
 
