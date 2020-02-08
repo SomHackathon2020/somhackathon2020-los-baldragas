@@ -173,6 +173,10 @@ public class User {
             return this;
         }
 
+        public UserBuilder type(String type) {
+            this.type = type;
+            return this;
+        }
 
 
         public UserBuilder phone(String phone) {
@@ -200,5 +204,7 @@ public class User {
         public User build() {
             return new User(this);
         }
+
+
     }
 }

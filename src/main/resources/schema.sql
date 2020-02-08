@@ -1,6 +1,6 @@
 CREATE TABLE activities (
-                          timestampinitial   TIMESTAMP WITH LOCAL TIME ZONE NOT NULL,
-                          timestampend      TIMESTAMP WITH LOCAL TIME ZONE NOT NULL,
+                          timestampinitial   TIMESTAMP NOT NULL,
+                          timestampend      TIMESTAMP NOT NULL,
                           content           VARCHAR2(30000) NOT NULL,
                           type              VARCHAR2(30) NOT NULL,
                           users_mail        VARCHAR2(50) NOT NULL
@@ -32,8 +32,8 @@ CREATE TABLE users (
                        phone      VARCHAR2(9) NOT NULL,
                        address    VARCHAR2(150) NOT NULL,
                        type       VARCHAR2(50) NOT NULL,
-                       height     NUMBER,
-                       weight     NUMBER
+                       height     FLOAT,
+                       weight     FLOAT
 );
 
 ALTER TABLE users ADD CONSTRAINT users_pk PRIMARY KEY ( mail );

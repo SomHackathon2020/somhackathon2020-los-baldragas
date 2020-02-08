@@ -1,10 +1,7 @@
 package com.example.hackathonbaldragas.controller;
 
 import com.example.hackathonbaldragas.domain.*;
-import com.example.hackathonbaldragas.persistence.CategoryDAO;
-import com.example.hackathonbaldragas.persistence.LinkDAO;
-import com.example.hackathonbaldragas.persistence.RequestDAO;
-import com.example.hackathonbaldragas.persistence.UserDAO;
+import com.example.hackathonbaldragas.persistence.*;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,20 +13,22 @@ public class ControllerDAO {
     private final CategoryDAO categoryDAO;
     private final RequestDAO requestDAO;
     private final LinkDAO linkDAO;
+    private final ActivityDAO activityDAO;
 
 
-    public ControllerDAO(UserDAO u, CategoryDAO c, RequestDAO r, LinkDAO l) {
+    public ControllerDAO(UserDAO u, CategoryDAO c, RequestDAO r, LinkDAO l, ActivityDAO a) {
         this.userDAO = u;
         this.categoryDAO = c;
         this.requestDAO = r;
         this.linkDAO = l;
+        this.activityDAO = a;
     }
 
     //USER
     public List<User> findAllUsers() {
         return userDAO.findAll();
     }
-    public User findUserByDni(String dni) { return userDAO.findByDni(dni).get(0); }
+    /*public User findUserByDni(String dni) { return userDAO.findByDni(dni).get(0); }
     public List<Category> findUserCategories(String dni) { return userDAO.getUserCategories(dni); }
     public List<User> findUserByFilter(UserFilter filter) { return userDAO.findByFilter(filter); }
     //inserts
@@ -77,6 +76,8 @@ public class ControllerDAO {
     public int insertLink(Link link){return linkDAO.insert(link);}
     public int updateLink(Link link){return linkDAO.update(link);}
     public int insertNewLink(Link link){return linkDAO.insertNew(link);}
-    public int deleteLink(Link link){return linkDAO.delete(link);}
+    public int deleteLink(Link link){return linkDAO.delete(link);}*/
 
+    //ACTIVITY
+    public List<Activity> findAllActivities() { return activityDAO.findAll(); }
 }
