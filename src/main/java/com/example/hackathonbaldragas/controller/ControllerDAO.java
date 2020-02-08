@@ -53,8 +53,20 @@ public class ControllerDAO {
 
     //REQUEST
 
+    public int insertRequest(Request request){
+        return requestDAO.insert(request);
+    }
+
     public List<Request> findAllRequests() {
         return requestDAO.findAll();
+    }
+
+    public Request findRequest(int id) {
+        return requestDAO.find(id);
+    }
+
+    public String getRequestCreator(int id){
+        return requestDAO.getUser(id);
     }
 
 
