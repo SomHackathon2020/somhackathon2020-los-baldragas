@@ -39,6 +39,8 @@ public class ActivityDAO {
     public List<Activity> findAll() {
         return jdbcTemplate.query(FIND_ALL, new BeanPropertyRowMapper<>(Activity.class));
     }
+
+
     public int insert(Activity activity) {
         return jdbcTemplate.update(INSERT, activity.getTimestampInitial(), activity.getTimestampEnd(), activity.getContent(), activity.getType(), activity.getUsersMail());
     }
@@ -50,6 +52,7 @@ public class ActivityDAO {
     public int delete(Activity activity){
         return jdbcTemplate.update(DELETE,activity.getTimestampInitial(),activity.getTimestampEnd(),activity.getUsersMail());
     }
+
 
 
 
