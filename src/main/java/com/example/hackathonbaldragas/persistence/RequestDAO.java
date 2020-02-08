@@ -33,6 +33,10 @@ public class RequestDAO {
         this.jdbcTemplate = jdbcTemplate;
     }
 
+    public int insert(Request request){
+        return jdbcTemplate.update(INSERT, request.getUser_dni(), request.getState(), request.getDescription());
+    }
+
     public List<Request> findAll() {
         return jdbcTemplate.query(FIND_ALL, new BeanPropertyRowMapper<>(Request.class));
     }

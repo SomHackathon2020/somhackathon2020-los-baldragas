@@ -53,6 +53,10 @@ public class ControllerDAO {
 
     //REQUEST
 
+    public int insertRequest(Request request){
+        return requestDAO.insert(request);
+    }
+
     public List<Request> findAllRequests() {
         return requestDAO.findAll();
     }
