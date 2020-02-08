@@ -15,8 +15,8 @@ public class CategoryDAO {
 
     private JdbcTemplate jdbcTemplate;
 
-    private final String FIND_ALL = "select * from \"category\"";
-    private final String INSERT = "insert into \"category\" (name, description) values(?,?)"; //falta usercateogry(?)
+    private final String FIND_ALL = "select * from category";
+    private final String INSERT = "insert into category (name, description) values(?,?)";
 
 
 

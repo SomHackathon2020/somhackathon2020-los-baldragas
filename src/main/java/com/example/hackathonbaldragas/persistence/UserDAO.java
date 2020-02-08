@@ -1,5 +1,6 @@
 package com.example.hackathonbaldragas.persistence;
 
+import com.example.hackathonbaldragas.domain.Category;
 import com.example.hackathonbaldragas.domain.User;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -15,10 +16,18 @@ public class UserDAO {
 
     private JdbcTemplate jdbcTemplate;
 
-    private final String FIND_ALL = "select * from \"USER\"";
-    private final String INSERT = "insert into \"USER\" (dni, password, name, surnames, birthday, mail, phone, address, availability, senior) values(?,?,?,?,?,?,?,?,?,?)"; //falta usercateogry(?)
+    private final String FIND_ALL = "select * from user";
+    private final String INSERT = "insert into user (dni, password, name, surnames, birthday, mail, phone, address, availability, senior) values(?,?,?,?,?,?,?,?,?,?)";
+    private final String DELETE = "delete from user where dni = ?";
+    private final String UPDATE = "UPDATE user set dni = ?, password = ?, name = ?, surnames = ?, birthday = ?, mail = ?, phone = ?, address = ?, availability = ?, senior = ? where dni = ?";
 
 
+    //CATEGORIES
+    private final String FIND_USER_CATEGORIES = "select name, description from category left join user_category on category.name = user_category.category_name where user_category.user_dni = ?";
+    private final String INSERT_USER_CATEGORY = "insert into user_category  (user_dni, category_name) values(?, ?)";
+    private final String DELETE_USER_CATEGORY = "delete from user_category  where user_dni = ? and category_name = ?";
+    private final String FIND_BY_SENIOR = "select * from \"USER\" where senior = ?";
+    private final String FIND_BY_DNI = "select * from \"USER\" where DNI = ?";
 
     private final RowMapper<User> mapper = (resultSet, i) -> {
         return new User.UserBuilder()
@@ -32,17 +41,16 @@ public class UserDAO {
                 .address(resultSet.getString("address"))
                 .availability(resultSet.getString("availability"))
                 .senior(resultSet.getBoolean("senior"))
-                //.likesGender(getUserLikes(resultSet.getString("username")))
+                .categoriesList(getUserCategories(resultSet.getString("dni")))
                 .build();
     };
 
-    /*private final RowMapper<Integer> likesMapper = (resultSet, i) -> {
-        return resultSet.getInt("gender_id");
+    private final RowMapper<Category> categoriesMapper = (resultSet, i) -> {
+        return new Category.CategoryBuilder()
+                .name(resultSet.getString("name"))
+                .description(resultSet.getString("description"))
+                .build();
     };
-
-    private final RowMapper<String> interestsMapper = (resultSet, i) -> {
-        return resultSet.getString("category_name");
-    };*/
 
     public UserDAO(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
@@ -52,12 +60,40 @@ public class UserDAO {
         return jdbcTemplate.query(FIND_ALL, new BeanPropertyRowMapper<>(User.class));
     }
 
-    //Falta el tema de user_category
+    public List<Category> getUserCategories(String dni) {
+        return jdbcTemplate.query(FIND_USER_CATEGORIES, new Object[]{dni}, categoriesMapper);
+    }
+
     public int insert(User user) {
         return jdbcTemplate.update(INSERT, user.getDni(), user.getPassword(), user.getName(), user.getSurnames(),
                 Date.valueOf(user.getBirthday()), user.getMail(), user.getPhone(), user.getAddress(), user.getAvailability(), user.getSenior());
     }
 
+    public int update (User user){
+        return jdbcTemplate.update(UPDATE, user.getDni(), user.getPassword(), user.getName(), user.getSurnames(),
+                Date.valueOf(user.getBirthday()), user.getMail(), user.getPhone(), user.getAddress(), user.getAvailability(), user.getSenior());
+    }
+
+    public List<User> findByUsername(String dni) {
+        return jdbcTemplate.query(FIND_BY_DNI, new Object[]{dni}, mapper);
+    }
+    public List<User> findBySenior(boolean senior){
+        return jdbcTemplate.query(FIND_BY_SENIOR,new Object[]{senior},mapper);
+    }
+
+    public int delete(User user)  { return delete(user.getDni()); }
+
+    public int delete(String dni) {
+        return jdbcTemplate.update(DELETE, dni);
+    }
+
+    public int insertUserCategory(String dni, String categoryName) {
+        return jdbcTemplate.update(INSERT_USER_CATEGORY, dni, categoryName);
+    }
+
+    public int deleteUserCategory(String dni, String categoryName) {
+        return jdbcTemplate.update(DELETE_USER_CATEGORY, dni, categoryName);
+    }
 
 
 }
