@@ -86,7 +86,9 @@ public class ControllerDAO {
     public List<Activity> findActivitiesByUser(String mail) {return activityDAO.findByUser(mail);}
 
     //MILESTONE
+    public int insertMilestone(Milestone milestone) { return milestoneDAO.insert(milestone); }
     public List<Milestone> findAllMilestones() { return milestoneDAO.findAll(); }
+    public List<Milestone> findMilestonesByUser(String userMail) { return milestoneDAO.findMilestonesByUser(userMail); }
     public Milestone findMilestoneByStart(LocalDate start, String mail) { return milestoneDAO.findByStart(start, mail); }
     public Milestone findMilestoneByEnd(LocalDate end, String mail) { return milestoneDAO.findByEnd(end, mail); }
 

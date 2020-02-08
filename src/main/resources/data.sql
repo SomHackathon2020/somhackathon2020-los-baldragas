@@ -66,3 +66,6 @@ INSERT INTO ACTIVITIES (timestampinitial, timestampend, content, type, users_mai
     "Timestamp": "2016-11-16 06:55:49.11"
   }
 ]','rpm','laia@mataro.com');
+
+INSERT INTO MILESTONES (dateinitial, dateend, target, users_mail) values ('2015-10-15','2015-10-15','1.2f','laia@mataro.com');
+INSERT INTO MILESTONES (dateinitial, dateend, target, users_mail) values ('2015-10-15','2015-10-15','1.5f','pepmogas@mataro.com');

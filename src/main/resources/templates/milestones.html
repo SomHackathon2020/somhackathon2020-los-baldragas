@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Milestones</title>
+</head>
+<body>
+        <div th:each="milestone : ${milestones}">by: <b th:text="${milestone.getUsersMail()}"></b>, objective: <i th:text="${milestone.getTarget()}"></i>, from: <b th:text="${milestone.getInitialDate()}"></b>, to: <i th:text="${milestone.getFinalDate()}"></i></div>
+</body>
+</html>
