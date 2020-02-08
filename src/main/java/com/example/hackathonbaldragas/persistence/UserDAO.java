@@ -1,5 +1,6 @@
 package com.example.hackathonbaldragas.persistence;
 
+import com.example.hackathonbaldragas.domain.Category;
 import com.example.hackathonbaldragas.domain.User;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -15,13 +16,14 @@ public class UserDAO {
 
     private JdbcTemplate jdbcTemplate;
 
-    private final String FIND_ALL = "select * from \"USER\"";
-    private final String INSERT = "insert into \"USER\" (dni, password, name, surnames, birthday, mail, phone, address, availability, senior) values(?,?,?,?,?,?,?,?,?,?)";
+    private final String FIND_ALL = "select * from user";
+    private final String INSERT = "insert into user (dni, password, name, surnames, birthday, mail, phone, address, availability, senior) values(?,?,?,?,?,?,?,?,?,?)";
+    private final String DELETE = "delete from user where dni = ?";
 
     //CATEGORIES
-    private final String FIND_USER_CATEGORIES = "select * from \"USER_CATEGORY\" where user_dni = ?";
-    private final String INSERT_USER_CATEGORY = "insert into \"USER_CATEGORY\"  (user_dni, category_name) values(?, ?)";
-    private final String DELETE_USER_CATEGORY = "delete from \"USER_CATEGORY\"  where user_dni = ? and category_name = ?";
+    private final String FIND_USER_CATEGORIES = "select name, description from category left join user_category on category.name = user_category.category_name where user_category.user_dni = ?";
+    private final String INSERT_USER_CATEGORY = "insert into user_category  (user_dni, category_name) values(?, ?)";
+    private final String DELETE_USER_CATEGORY = "delete from user_category  where user_dni = ? and category_name = ?";
 
 
 
@@ -41,8 +43,11 @@ public class UserDAO {
                 .build();
     };
 
-    private final RowMapper<String> categoriesMapper = (resultSet, i) -> {
-        return resultSet.getString("category_name");
+    private final RowMapper<Category> categoriesMapper = (resultSet, i) -> {
+        return new Category.CategoryBuilder()
+                .name(resultSet.getString("name"))
+                .description(resultSet.getString("description"))
+                .build();
     };
 
     public UserDAO(JdbcTemplate jdbcTemplate) {
@@ -53,13 +58,18 @@ public class UserDAO {
         return jdbcTemplate.query(FIND_ALL, new BeanPropertyRowMapper<>(User.class));
     }
 
-    public List<String> getUserCategories(String dni) {
+    public List<Category> getUserCategories(String dni) {
         return jdbcTemplate.query(FIND_USER_CATEGORIES, new Object[]{dni}, categoriesMapper);
     }
 
     public int insert(User user) {
         return jdbcTemplate.update(INSERT, user.getDni(), user.getPassword(), user.getName(), user.getSurnames(),
                 Date.valueOf(user.getBirthday()), user.getMail(), user.getPhone(), user.getAddress(), user.getAvailability(), user.getSenior());
+    }
+
+    public int delete(User user)  { return delete(user.getDni()); }
+    public int delete(String dni) {
+        return jdbcTemplate.update(DELETE, dni);
     }
 
     public int insertUserCategory(String dni, String categoryName) {

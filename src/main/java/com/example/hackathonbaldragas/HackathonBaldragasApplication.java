@@ -1,6 +1,8 @@
 package com.example.hackathonbaldragas;
 
 import com.example.hackathonbaldragas.controller.ControllerDAO;
+import com.example.hackathonbaldragas.domain.Category;
+import com.example.hackathonbaldragas.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -22,7 +24,6 @@ public class HackathonBaldragasApplication implements CommandLineRunner {
         System.out.println("READY");
 
         controllerDAO.findAllUsers().forEach(System.out::println);
-
         controllerDAO.findAllCategories().forEach(System.out::println);
     }
 }
