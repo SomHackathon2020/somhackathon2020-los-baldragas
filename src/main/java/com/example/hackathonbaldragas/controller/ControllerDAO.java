@@ -27,6 +27,7 @@ public class ControllerDAO {
     public List<Category> findUserCategories(String dni) { return userDAO.getUserCategories(dni); }
     //inserts
     public int insertUser(User user) { return userDAO.insert(user); }
+
     public int insertUserCategory(String dni, String category) { return userDAO.insertUserCategory(dni, category); }
     //deletes
     public int deleteUser(User user) { return userDAO.delete(user); } //probably not even necessary. oh well.
@@ -37,5 +38,7 @@ public class ControllerDAO {
     public List<Category> findAllCategories() {
         return categoryDAO.findAll();
     }
+
+    public int updateUser(User user) { return userDAO.update(user); }
 
 }
