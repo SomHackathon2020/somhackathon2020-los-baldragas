@@ -2,6 +2,7 @@ package com.example.hackathonbaldragas.WebController;
 
 
 import com.example.hackathonbaldragas.controller.ControllerDAO;
+import com.example.hackathonbaldragas.domain.Activity;
 import com.example.hackathonbaldragas.domain.User;
 import com.example.hackathonbaldragas.domain.UserFilter;
 import com.example.hackathonbaldragas.domain.Request;
@@ -144,6 +145,14 @@ public class WebController {
     @GetMapping("/Telefons")
     public String telefons(){
         return "telefons";
+    }
+
+
+    @GetMapping("/activity/{mail}")
+    public String mapCaps(@PathVariable String mail, Model model){
+        List<Activity> list = controllerDAO.findActivitiesByUser(mail);
+        model.addAttribute("activities", list);
+        return "activity";
     }
 
 
