@@ -2,12 +2,14 @@ package com.example.hackathonbaldragas.persistence;
 
 import com.example.hackathonbaldragas.domain.Category;
 import com.example.hackathonbaldragas.domain.User;
+import com.example.hackathonbaldragas.domain.UserFilter;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -26,8 +28,9 @@ public class UserDAO {
     private final String FIND_USER_CATEGORIES = "select name, description from category left join user_category on category.name = user_category.category_name where user_category.user_dni = ?";
     private final String INSERT_USER_CATEGORY = "insert into user_category  (user_dni, category_name) values(?, ?)";
     private final String DELETE_USER_CATEGORY = "delete from user_category  where user_dni = ? and category_name = ?";
-    private final String FIND_BY_SENIOR = "select * from \"USER\" where senior = ?";
-    private final String FIND_BY_DNI = "select * from \"USER\" where DNI = ?";
+    private final String FIND_BY_SENIOR = "select * from user where senior = ?";
+    private final String FIND_BY_DNI = "select * from user where dni = ?";
+    private final String FIND_BY_MAIL = "select * from user where mail = ?";
 
     private final RowMapper<User> mapper = (resultSet, i) -> {
         return new User.UserBuilder()
@@ -74,9 +77,25 @@ public class UserDAO {
                 Date.valueOf(user.getBirthday()), user.getMail(), user.getPhone(), user.getAddress(), user.getAvailability(), user.getSenior());
     }
 
-    public List<User> findByUsername(String dni) {
+    public List<User> findByDni(String dni) {
         return jdbcTemplate.query(FIND_BY_DNI, new Object[]{dni}, mapper);
     }
+
+    public List<User> findByMail(String mail) {
+        return jdbcTemplate.query(FIND_BY_MAIL, new Object[]{mail}, mapper);
+    }
+
+    public List<User> findByFilter(UserFilter filter){
+        List<User> candidates = findAll();
+        List<User> result = new ArrayList<User>();
+        if(!filter.getAvailability().equals("matins i tardes")){
+            for(User user : candidates) if(user.getAvailability().equals(filter.getAvailability()) || user.getAvailability().equals("matins i tardes")) result.add(user);
+        }
+        else result = findAll();
+        //TODO filter out categories, IF USERS STILL HAD THEIR FUCKING LIST
+        return result;
+    }
+
     public List<User> findBySenior(boolean senior){
         return jdbcTemplate.query(FIND_BY_SENIOR,new Object[]{senior},mapper);
     }

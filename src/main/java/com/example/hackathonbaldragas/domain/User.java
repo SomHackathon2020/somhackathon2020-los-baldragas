@@ -84,9 +84,7 @@ public class User {
         return phone;
     }
 
-    public String getAddress() {
-        return phone;
-    }
+    public String getAddress() { return address; }
 
     public String getAvailability() { return availability; }
 
@@ -97,6 +95,13 @@ public class User {
     }
 
     public List<Category> getCategoriesList() { return categoriesList; }
+    public boolean hasCategory(String category) {
+        for(Category c : categoriesList) {
+            System.out.println(c);
+            if(c.getName().equals(category)) return  true;
+        }
+        return false;
+    }
 
     public void setDni(String dni) { this.dni = dni; }
 

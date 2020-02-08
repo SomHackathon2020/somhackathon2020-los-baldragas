@@ -2,6 +2,8 @@ package com.example.hackathonbaldragas.WebController;
 
 
 import com.example.hackathonbaldragas.controller.ControllerDAO;
+import com.example.hackathonbaldragas.domain.User;
+import com.example.hackathonbaldragas.domain.UserFilter;
 import com.example.hackathonbaldragas.domain.Request;
 import com.opencsv.CSVReader;
 import org.springframework.boot.web.client.RestTemplateBuilder;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.io.Reader;
 import java.nio.file.Files;
@@ -48,6 +51,29 @@ public class WebController {
 
         return "showRequests";
     }
+    //User Profile [ADMIN AND PRINCIPAL]
+    @GetMapping("/user/{tempUser}")
+    public String userProfile(@PathVariable String tempUser, Model model){
+        model.addAttribute("user", controllerDAO.findUserByDni(tempUser));
+        return "userProfile";
+    }
+
+    //User List (for requests) [ADMIN]
+    @GetMapping("/users")
+    public String userList(Model model){
+        if(!model.containsAttribute("filter")) model.addAttribute("filter", new UserFilter());
+        model.addAttribute("users", controllerDAO.findUserByFilter((UserFilter) model.getAttribute("filter")));
+        model.addAttribute("categories", controllerDAO.findAllCategories());
+        return "userList";
+    }
+    @PostMapping("/users")
+    public String userListPost(UserFilter filter, Model model){
+        model.addAttribute("filter",filter);
+        model.addAttribute("users", controllerDAO.findUserByFilter((UserFilter) model.getAttribute("filter")));
+        model.addAttribute("categories", controllerDAO.findAllCategories());
+        return "userList";
+    }
+
 
     @GetMapping("showRequest/{idRequest}")
     public String showRequest(Model model, @PathVariable int idRequest){
