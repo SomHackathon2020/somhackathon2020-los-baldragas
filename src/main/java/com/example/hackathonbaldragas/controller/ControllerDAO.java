@@ -2,6 +2,7 @@ package com.example.hackathonbaldragas.controller;
 
 import com.example.hackathonbaldragas.domain.*;
 import com.example.hackathonbaldragas.persistence.*;
+import org.apache.tomcat.jni.Local;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -92,10 +93,21 @@ public class ControllerDAO {
 
     //ACTIVITY
     public List<Activity> findAllActivities() { return activityDAO.findAll(); }
+    public List<Activity> findActivitiesByUser(String mail) { return activityDAO.findByUser(mail); }
+    public List<Activity> getActivityBetweenDates(String mail, LocalDate datea, LocalDate dateb) { return activityDAO.findBetweenDates(mail, datea, dateb); }
 
     //MILESTONE
-    public int insertMileStone(Milestone milestone){return milestoneDAO.insert(milestone);}
+    public int insertMilestone(Milestone milestone) { return milestoneDAO.insert(milestone); }
     public List<Milestone> findAllMilestones() { return milestoneDAO.findAll(); }
+    public List<Milestone> findMilestonesByUser(String userMail) {
+        List<Milestone> result = milestoneDAO.findMilestonesByUser(userMail);
+        for(Milestone mile : result) {
+            double count = 0.0;
+            for(Activity act: getActivityBetweenDates(userMail, mile.getInitialDate(), mile.getFinalDate())) count += act.getKcal();
+            mile.setProgress(count);
+        }
+        return result;
+    }
     public Milestone findMilestoneByStart(LocalDate start, String mail) { return milestoneDAO.findByStart(start, mail); }
     public Milestone findMilestoneByEnd(LocalDate end, String mail) { return milestoneDAO.findByEnd(end, mail); }
 

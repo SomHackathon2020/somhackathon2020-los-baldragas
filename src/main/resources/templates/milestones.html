@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Milestones</title>
+</head>
+<body>
+        <div th:each="milestone : ${milestones}">
+            <div th:text="${milestone.getUsersMail()}"></div>
+            objective: <i th:text="${milestone.getProgress()}"></i> of <i th:text="${milestone.getTarget()}"></i> kcal <b th:text="| (${milestone.getProgressPercent()}%)|"></b><br>
+            started: <div th:text="${milestone.getInitialDate()}"></div>
+            will end: <div th:text="${milestone.getFinalDate()}"></div>
+        </div>
+</body>
+</html>
