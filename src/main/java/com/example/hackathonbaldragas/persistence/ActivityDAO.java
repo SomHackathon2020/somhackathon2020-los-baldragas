@@ -16,7 +16,7 @@ public class ActivityDAO {
 
     private final String FIND_ALL = "select * from activities";
     private final String INSERT = "insert into activities (timestampinitial, timestampend, content, type, users_mail) values(?,?,?,?,?)";
-    private final String UPDATE = "update activities set timestampinitial = ?,timestampend = ?,content = ?, type = ?,users_mail = ? where timestampinitial = ? AND timestampend = ? AND usersmail = ?";
+    private final String UPDATE = "update activities set timestampinitial = ?,timestampend = ?,content = ?, type = ?,users_mail = ? where timestampinitial = ? AND timestampend = ? AND users_mail = ?";
     public final String DELETE = "delete from activities where timestampinitial = ? AND timestampend = ? AND users_mail = ?";
 
 

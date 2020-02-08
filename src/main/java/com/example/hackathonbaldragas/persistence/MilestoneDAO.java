@@ -6,6 +6,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Repository
@@ -14,9 +15,9 @@ public class MilestoneDAO {
     private JdbcTemplate jdbcTemplate;
 
     private final String FIND_ALL = "select * from milestones";
-    private final String INSERT = "insert into milestones (dateinitial, dateend, target, users_mail) values(?,?,?,?)"; //falta usercateogry(?)
-    //private final String FIND = "SELECT * FROM milestones WHERE dateinitial = ? AND dateend = ?";
-
+    private final String INSERT = "insert into milestones (dateinitial, dateend, target, users_mail) values(?,?,?,?)";
+    private final String FIND_BY_STARTDATE = "select * from milestones where dateinitial = ? AND users_mail = ?";
+    private final String FIND_BY_ENDDATE = "select * from milestones where dateend = ? AND users_mail = ?";
 
     private final RowMapper<Milestone> mapper = (resultSet, i) -> {
         return new Milestone.MilestoneBuilder()
@@ -40,7 +41,8 @@ public class MilestoneDAO {
         return jdbcTemplate.query(FIND_ALL, new BeanPropertyRowMapper<>(Milestone.class));
     }
 
-    //public Milestone find(int id) { return jdbcTemplate.queryForObject(FIND, new Object[]{id}, mapper);}
+    public Milestone findByStart(LocalDate start, String mail) { return jdbcTemplate.queryForObject(FIND_BY_STARTDATE, new Object[]{start, mail}, mapper);}
+    public Milestone findByEnd(LocalDate end, String mail) { return jdbcTemplate.queryForObject(FIND_BY_ENDDATE, new Object[]{end, mail}, mapper);};
 
 
 }
