@@ -1,9 +1,6 @@
 package com.example.hackathonbaldragas.controller;
 
-import com.example.hackathonbaldragas.domain.Category;
-import com.example.hackathonbaldragas.domain.Link;
-import com.example.hackathonbaldragas.domain.Request;
-import com.example.hackathonbaldragas.domain.User;
+import com.example.hackathonbaldragas.domain.*;
 import com.example.hackathonbaldragas.persistence.CategoryDAO;
 import com.example.hackathonbaldragas.persistence.LinkDAO;
 import com.example.hackathonbaldragas.persistence.RequestDAO;
@@ -32,7 +29,9 @@ public class ControllerDAO {
     public List<User> findAllUsers() {
         return userDAO.findAll();
     }
+    public User findUserByDni(String dni) { return userDAO.findByDni(dni).get(0); }
     public List<Category> findUserCategories(String dni) { return userDAO.getUserCategories(dni); }
+    public List<User> findUserByFilter(UserFilter filter) { return userDAO.findByFilter(filter); }
     //inserts
     public int insertUser(User user) { return userDAO.insert(user); }
 
@@ -75,5 +74,9 @@ public class ControllerDAO {
     public List<Link> findAllLinks() {
         return linkDAO.findAll();
     }
+    public int insertLink(Link link){return linkDAO.insert(link);}
+    public int updateLink(Link link){return linkDAO.update(link);}
+    public int insertNewLink(Link link){return linkDAO.insertNew(link);}
+    public int deleteLink(Link link){return linkDAO.delete(link);}
 
 }

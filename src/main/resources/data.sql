@@ -1,11 +1,14 @@
 --Users
-INSERT INTO USER (dni, password, name, surnames, birthday, mail, phone, address, availability, senior) VALUES ('45263112A', '{noop}password', 'Pep', 'Mogas','1930-9-7','pepmogas@mataro.com','666555444','Cami Ral 123','Tardes','1');
-INSERT INTO USER (dni, password, name, surnames, birthday, mail, phone, address, availability, senior) VALUES ('33363112W', '{noop}password', 'Laia', 'Arquera','1998-3-2','laia@mataro.com','677111687','Plaça Ajuntament 1','Matís','0');
+INSERT INTO USER (dni, password, name, surnames, birthday, mail, phone, address, availability, senior) VALUES ('45263112A', '{noop}password', 'Pep', 'Mogas','1930-9-7','pepmogas@mataro.com','666555444','Cami Ral 123','tardes','1');
+INSERT INTO USER (dni, password, name, surnames, birthday, mail, phone, address, availability, senior) VALUES ('33363112W', '{noop}password', 'Laia', 'Arquera','1998-3-2','laia@mataro.com','677111687','Plaça Ajuntament 1','matins','0');
 
 --Categories
 INSERT INTO CATEGORY(name, description) VALUES ('Costura','Descripción de costura');
+INSERT INTO CATEGORY(name, description) VALUES ('Cocina','Hacer comida comestible');
+INSERT INTO CATEGORY(name, description) VALUES ('Deporte','Descripción de deporte');
 
 INSERT INTO USER_CATEGORY (user_dni, category_name) VALUES ('45263112A', 'Costura');
+INSERT INTO USER_CATEGORY (user_dni, category_name) VALUES ('33363112W', 'Cocina');
 
 --Requests
 INSERT INTO REQUEST(user_dni, id, state, description) VALUES ('45263112A',NULL,'Pending','Me gustaría encontrar compañía y que me ayuden a hacer la compra. Puedo enseñar a coser.');

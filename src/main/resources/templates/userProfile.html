@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${user.getName()}"></title>
+</head>
+<body>
+    Dni:<div th:text="${user.getDni()}"></div>
+    Name:<div th:text="${user.getName()}"></div>
+    Surnames:<div th:text="${user.getSurnames()}"></div>
+    Birthday:<div th:text="${user.getBirthday()}"></div>
+    Mail:<div th:text="${user.getMail()}"></div>
+    Phone:<div th:text="${user.getPhone()}"></div>
+    Address:<div th:text="${user.getAddress()}"></div>
+    Availability:<div th:text="${user.getAvailability()}"></div>
+    Senior:<div th:text="${user.getSenior()}"></div>
+    Categories:<div th:text="${user.getCategoriesList()}"></div>
+</body>
+</html>
