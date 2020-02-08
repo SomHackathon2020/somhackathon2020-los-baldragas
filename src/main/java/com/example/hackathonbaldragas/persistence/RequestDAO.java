@@ -14,7 +14,7 @@ public class RequestDAO {
     private JdbcTemplate jdbcTemplate;
 
     private final String FIND_ALL = "select * from request";
-    private final String INSERT = "insert into request (user_dni, id, description) values(?,?)"; //falta usercateogry(?)
+    private final String INSERT = "insert into request (user_dni, state, description) values(?,?,?)"; //falta usercateogry(?)
 
 
 
@@ -22,6 +22,7 @@ public class RequestDAO {
         return new Request.RequestBuilder()
                 .user_dni(resultSet.getString("user_dni"))
                 .id(resultSet.getString("id"))
+                .state(resultSet.getString("state"))
                 .description(resultSet.getString("description"))
                 .build();
     };
