@@ -1,9 +1,11 @@
 package com.example.hackathonbaldragas.controller;
 
 import com.example.hackathonbaldragas.domain.Category;
+import com.example.hackathonbaldragas.domain.Link;
 import com.example.hackathonbaldragas.domain.Request;
 import com.example.hackathonbaldragas.domain.User;
 import com.example.hackathonbaldragas.persistence.CategoryDAO;
+import com.example.hackathonbaldragas.persistence.LinkDAO;
 import com.example.hackathonbaldragas.persistence.RequestDAO;
 import com.example.hackathonbaldragas.persistence.UserDAO;
 import org.springframework.stereotype.Service;
@@ -16,12 +18,14 @@ public class ControllerDAO {
     private final UserDAO userDAO;
     private final CategoryDAO categoryDAO;
     private final RequestDAO requestDAO;
+    private final LinkDAO linkDAO;
 
 
-    public ControllerDAO(UserDAO u, CategoryDAO c, RequestDAO r) {
+    public ControllerDAO(UserDAO u, CategoryDAO c, RequestDAO r, LinkDAO l) {
         this.userDAO = u;
         this.categoryDAO = c;
         this.requestDAO = r;
+        this.linkDAO = l;
     }
 
     //USER
@@ -51,6 +55,13 @@ public class ControllerDAO {
 
     public List<Request> findAllRequests() {
         return requestDAO.findAll();
+    }
+
+
+    //LINK
+
+    public List<Link> findAllLinks() {
+        return linkDAO.findAll();
     }
 
 }

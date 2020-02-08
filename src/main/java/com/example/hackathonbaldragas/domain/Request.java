@@ -3,6 +3,7 @@ package com.example.hackathonbaldragas.domain;
 public class Request {
     private String user_dni;
     private String id;
+    private String state;
     private String description;
 
     public Request() {}
@@ -10,6 +11,7 @@ public class Request {
     public Request(RequestBuilder builder) {
         user_dni = builder.user_dni;
         id = builder.id;
+        state = builder.state;
         description = builder.description;
     }
 
@@ -18,6 +20,7 @@ public class Request {
         return "Request{" +
                 "user_dni=" + user_dni +
                 ", id=" + id +
+                ", state=" + state +
                 ", description=" + description +
                 '}';
     }
@@ -38,6 +41,10 @@ public class Request {
         return id;
     }
 
+    public String getState() {
+        return state;
+    }
+
     public String getDescription() {
         return description;
     }
@@ -46,12 +53,15 @@ public class Request {
 
     public void setId(String id) { this.id = id; }
 
+    public void setState(String state) { this.state = state; }
+
     public void setDescription(String description) { this.description = description; }
 
 
     public static class RequestBuilder {
         private String user_dni;
         private String id;
+        private String state;
         private String description;
 
         public RequestBuilder() {}
@@ -63,6 +73,11 @@ public class Request {
 
         public RequestBuilder id(String id) {
             this.id = id;
+            return this;
+        }
+
+        public RequestBuilder state(String state) {
+            this.state = state;
             return this;
         }
 

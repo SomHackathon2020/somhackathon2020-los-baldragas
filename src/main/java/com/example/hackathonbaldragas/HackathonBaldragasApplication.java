@@ -31,12 +31,14 @@ public class HackathonBaldragasApplication implements CommandLineRunner {
 
         controllerDAO.findAllRequests().forEach(System.out::println);
 
-        /*controllerDAO.insertUser(new User.UserBuilder()
+        controllerDAO.insertUser(new User.UserBuilder()
                 .dni("John123").password("1234").name("John").surnames("john@john.com").birthday(LocalDate.of(1990,10,10))
-                .mail("666666666").phone("9999999").address("micasa").availability("I'm the best!").senior(true).build());*/
+                .mail("666666666").phone("9999999").address("micasa").availability("I'm the best!").senior(true).build());
 
-
+        controllerDAO.findAllUsers().forEach(System.out::println);
         controllerDAO.findUserCategories("45263112A").forEach(System.out::println);
+
+        controllerDAO.findAllLinks().forEach(System.out::println);
 
 
 
