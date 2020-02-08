@@ -45,4 +45,28 @@ public class WebController {
 
         return "request";
     }
+
+    @GetMapping("/sudoku/facil")
+    public String sudokuWidget(){
+        return "sudokuWidgetEasy";
+    }
+
+    @GetMapping("/sudoku/mig")
+    public String sudokuWidget2(){
+        return "sudokuWidgetMedium";
+    }
+
+    @GetMapping("/sudoku/dificil")
+    public String sudokuWidget3(){
+        return "sudokuWidgetHard";
+    }
+
+    @GetMapping("/Receptes")
+    public String recetas(){
+        return "recetas";
+    }
+    @GetMapping("/Telefons")
+    public String telefons(){
+        return "telefons";
+    }
 }
