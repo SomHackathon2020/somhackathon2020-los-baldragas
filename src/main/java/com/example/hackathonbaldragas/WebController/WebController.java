@@ -44,7 +44,7 @@ public class WebController {
         return "mainPage";
     }
 
-    @GetMapping("showRequests")
+    /*@GetMapping("showRequests")
     public String showRequests(Model model){
 
         model.addAttribute("requestsList", controllerDAO.findAllRequests());
@@ -120,7 +120,7 @@ public class WebController {
         model.addAttribute("message", message);
 
         return "requestPostCreation";
-    }
+    }*/
 
     @GetMapping("/sudoku/facil")
     public String sudokuWidget(){

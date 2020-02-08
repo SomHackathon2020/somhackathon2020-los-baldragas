@@ -31,8 +31,8 @@ public class HackathonBaldragasApplication implements CommandLineRunner {
     public void run(String... args) throws Exception {
         System.out.println("READY");
 
-        /*controllerDAO.findAllUsers().forEach(System.out::println);
-        controllerDAO.findAllCategories().forEach(System.out::println);
+        controllerDAO.findAllUsers().forEach(System.out::println);
+        /*controllerDAO.findAllCategories().forEach(System.out::println);
 
         controllerDAO.findAllRequests().forEach(System.out::println);
 

@@ -9,6 +9,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -18,10 +19,10 @@ public class UserDAO {
 
     private JdbcTemplate jdbcTemplate;
 
-    private final String FIND_ALL = "select * from user";
-    private final String INSERT = "insert into user (dni, password, name, surnames, birthday, mail, phone, address, availability, senior) values(?,?,?,?,?,?,?,?,?,?)";
-    private final String DELETE = "delete from user where dni = ?";
-    private final String UPDATE = "UPDATE user set dni = ?, password = ?, name = ?, surnames = ?, birthday = ?, mail = ?, phone = ?, address = ?, availability = ?, senior = ? where dni = ?";
+    private final String FIND_ALL = "select * from users";
+    /*private final String INSERT = "insert into users (dni, password, name, surnames, birthday, mail, phone, address, availability, senior) values(?,?,?,?,?,?,?,?,?,?)";
+    private final String DELETE = "delete from users where dni = ?";
+    private final String UPDATE = "UPDATE users set dni = ?, password = ?, name = ?, surnames = ?, birthday = ?, mail = ?, phone = ?, address = ?, availability = ?, senior = ? where dni = ?";
 
     //CATEGORIES
     private final String FIND_USER_CATEGORIES = "select name, description from category left join user_category on category.name = user_category.category_name where user_category.user_dni = ?";
@@ -29,21 +30,22 @@ public class UserDAO {
     private final String DELETE_USER_CATEGORY = "delete from user_category  where user_dni = ? and category_name = ?";
     private final String FIND_BY_SENIOR = "select * from user where senior = ?";
     private final String FIND_BY_DNI = "select * from user where dni = ?";
-    private final String FIND_BY_MAIL = "select * from user where mail = ?";
+    private final String FIND_BY_MAIL = "select * from user where mail = ?";*/
+
+
 
     private final RowMapper<User> mapper = (resultSet, i) -> {
         return new User.UserBuilder()
-                .dni(resultSet.getString("dni"))
+                .mail(resultSet.getString("mail"))
                 .password(resultSet.getString("password"))
                 .name(resultSet.getString("name"))
                 .surnames(resultSet.getString("surnames"))
                 .birthday(resultSet.getDate("birthday").toLocalDate())
-                .mail(resultSet.getString("mail"))
                 .phone(resultSet.getString("phone"))
                 .address(resultSet.getString("address"))
-                .availability(resultSet.getString("availability"))
-                .senior(resultSet.getBoolean("senior"))
-                .categoriesList(getUserCategories(resultSet.getString("dni")))
+                .type(resultSet.getString("type"))
+                .height(resultSet.getDouble("height"))
+                .height(resultSet.getDouble("height"))
                 .build();
     };
 
@@ -60,11 +62,11 @@ public class UserDAO {
 
     public List<User> findAll() {
         List<User> rawUsers = jdbcTemplate.query(FIND_ALL, new BeanPropertyRowMapper<>(User.class));
-        for(User u : rawUsers) u.setCategoriesList(getUserCategories(u.getDni()));
+        //for(User u : rawUsers) u.setCategoriesList(getUserCategories(u.getDni()));
         return rawUsers;
     }
 
-    public List<Category> getUserCategories(String dni) {
+    /*public List<Category> getUserCategories(String dni) {
         return jdbcTemplate.query(FIND_USER_CATEGORIES, new Object[]{dni}, categoriesMapper);
     }
 
@@ -124,7 +126,7 @@ public class UserDAO {
 
     public int deleteUserCategory(String dni, String categoryName) {
         return jdbcTemplate.update(DELETE_USER_CATEGORY, dni, categoryName);
-    }
+    }*/
 
 
 }

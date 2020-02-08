@@ -29,7 +29,7 @@ public class ControllerDAO {
     public List<User> findAllUsers() {
         return userDAO.findAll();
     }
-    public User findUserByDni(String dni) { return userDAO.findByDni(dni).get(0); }
+    /*public User findUserByDni(String dni) { return userDAO.findByDni(dni).get(0); }
     public List<Category> findUserCategories(String dni) { return userDAO.getUserCategories(dni); }
     public List<User> findUserByFilter(UserFilter filter) { return userDAO.findByFilter(filter); }
     //inserts
@@ -77,6 +77,6 @@ public class ControllerDAO {
     public int insertLink(Link link){return linkDAO.insert(link);}
     public int updateLink(Link link){return linkDAO.update(link);}
     public int insertNewLink(Link link){return linkDAO.insertNew(link);}
-    public int deleteLink(Link link){return linkDAO.delete(link);}
+    public int deleteLink(Link link){return linkDAO.delete(link);}*/
 
 }
