@@ -17,7 +17,7 @@ public class Category {
 
     @Override
     public String toString() {
-        return "User{" +
+        return "Category{" +
                 "name=" + name +
                 ", description=" + description +
                 '}';

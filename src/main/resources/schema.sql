@@ -5,7 +5,7 @@ CREATE TABLE category (
 
 ALTER TABLE category ADD CONSTRAINT category_pk PRIMARY KEY ( name );
 
-CREATE TABLE peticion (
+CREATE TABLE request (
                           user_dni   VARCHAR2(9) NOT NULL,
                           id            INTEGER NOT NULL,
                           description   VARCHAR2(500)
@@ -47,8 +47,8 @@ ALTER TABLE vinculo
                                             user_dni,
                                             fecha );
 
-ALTER TABLE peticion
-    ADD CONSTRAINT peticion_user_fk FOREIGN KEY ( user_dni )
+ALTER TABLE request
+    ADD CONSTRAINT request_user_fk FOREIGN KEY ( user_dni )
         REFERENCES user ( dni );
 
 ALTER TABLE user_category
