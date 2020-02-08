@@ -14,7 +14,7 @@ ALTER TABLE activities
 CREATE TABLE milestones (
                            dateinitial   DATE NOT NULL,
                            dateend       DATE NOT NULL,
-                           target        NUMBER NOT NULL,
+                           target        FLOAT NOT NULL,
                            users_mail    VARCHAR2(50) NOT NULL
 );
 
