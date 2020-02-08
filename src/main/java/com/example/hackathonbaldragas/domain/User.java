@@ -14,7 +14,7 @@ public class User {
     private String address;
     private String availability;
     private boolean senior;
-    private List<String> categoriesList;
+    private List<Category> categoriesList;
 
     public User() {}
 
@@ -92,7 +92,7 @@ public class User {
 
     public boolean getSenior() { return senior; }
 
-    public List<String> getCategoriesList() { return categoriesList; }
+    public List<Category> getCategoriesList() { return categoriesList; }
 
     public void setDni(String dni) { this.dni = dni; }
 
@@ -114,7 +114,7 @@ public class User {
 
     public void setSenior(boolean senior) { this.senior = senior; }
 
-    public void setCategoriesList(List<String> categoriesList) { this.categoriesList = categoriesList; }
+    public void setCategoriesList(List<Category> categoriesList) { this.categoriesList = categoriesList; }
 
     public static class UserBuilder {
         private String dni;
@@ -127,7 +127,7 @@ public class User {
         private String address;
         private String availability;
         private boolean senior;
-        private List<String> categoriesList;
+        private List<Category> categoriesList;
 
         public UserBuilder() {}
 
@@ -181,7 +181,7 @@ public class User {
             return this;
         }
 
-        public UserBuilder categoriesList(List<String> categoriesList) {
+        public UserBuilder categoriesList(List<Category> categoriesList) {
             this.categoriesList = categoriesList;
             return this;
         }
