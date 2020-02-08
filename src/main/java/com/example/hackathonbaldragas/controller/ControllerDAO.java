@@ -28,6 +28,15 @@ public class ControllerDAO {
     public List<User> findAllUsers() {
         return userDAO.findAll();
     }
+
+    public User findUser(String userMail){
+        return userDAO.findUser(userMail);
+    }
+
+    public List<User> findUserByName(String name){
+        return userDAO.findByName(name);
+    }
+
     /*public User findUserByDni(String dni) { return userDAO.findByDni(dni).get(0); }
     public List<Category> findUserCategories(String dni) { return userDAO.getUserCategories(dni); }
     public List<User> findUserByFilter(UserFilter filter) { return userDAO.findByFilter(filter); }

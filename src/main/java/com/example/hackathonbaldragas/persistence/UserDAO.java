@@ -20,6 +20,8 @@ public class UserDAO {
     private JdbcTemplate jdbcTemplate;
 
     private final String FIND_ALL = "select * from users";
+    private final String FIND = "SELECT * FROM users WHERE mail = ?";
+    private final String FIND_BY_NAME = "SELECT * FROM users WHERE name LIKE '%'+?+'%'";
     /*private final String INSERT = "insert into users (dni, password, name, surnames, birthday, mail, phone, address, availability, senior) values(?,?,?,?,?,?,?,?,?,?)";
     private final String DELETE = "delete from users where dni = ?";
     private final String UPDATE = "UPDATE users set dni = ?, password = ?, name = ?, surnames = ?, birthday = ?, mail = ?, phone = ?, address = ?, availability = ?, senior = ? where dni = ?";
@@ -45,7 +47,7 @@ public class UserDAO {
                 .address(resultSet.getString("address"))
                 .type(resultSet.getString("type"))
                 .height(resultSet.getDouble("height"))
-                .height(resultSet.getDouble("height"))
+                .weight(resultSet.getDouble("weight"))
                 .build();
     };
 
@@ -66,6 +68,16 @@ public class UserDAO {
         return rawUsers;
     }
 
+    public User findUser(String userMail){
+        return jdbcTemplate.queryForObject(FIND, new Object[]{userMail}, mapper);
+    }
+
+
+    public List<User> findByName(String name){
+        if(name == "")
+            return findAll();
+        return jdbcTemplate.query(FIND_BY_NAME, new Object[]{name}, mapper);
+    }
     /*public List<Category> getUserCategories(String dni) {
         return jdbcTemplate.query(FIND_USER_CATEGORIES, new Object[]{dni}, categoriesMapper);
     }

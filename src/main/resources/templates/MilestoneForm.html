@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Request</title>
+</head>
+<body>
+    <div class="card">
+        <form method="POST" th:object="${milestone}">
+            Data inici:
+            <input th:type="date" name="dateOfStart" th:field="*{initialDate}"/>
+            Data fi:
+            <input th:type="date" name="dateOfEnd" th:field="*{finalDate}"/>
+            Kcal a cremar:
+            <input th:type="text" th:field="*{target}"/>
+            <div>
+                <button class="ui button" type="submit">Crear Objectiu</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

@@ -2,20 +2,15 @@ package com.example.hackathonbaldragas.WebController;
 
 
 import com.example.hackathonbaldragas.controller.ControllerDAO;
-import com.example.hackathonbaldragas.domain.User;
-import com.example.hackathonbaldragas.domain.UserFilter;
+import com.example.hackathonbaldragas.domain.Milestone;
 import com.example.hackathonbaldragas.domain.Request;
 import com.opencsv.CSVReader;
-import org.springframework.boot.web.client.RestTemplateBuilder;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.client.RestTemplate;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.io.Reader;
 import java.nio.file.Files;
@@ -72,37 +67,54 @@ public class WebController {
         model.addAttribute("users", controllerDAO.findUserByFilter((UserFilter) model.getAttribute("filter")));
         model.addAttribute( "categories", controllerDAO.findAllCategories());
         return "userList";
+    }*/
+
+    @GetMapping("users")
+    public String showUsers(Model model){
+
+        if(!model.containsAttribute("filter")){
+            String filter = "";
+            model.addAttribute("filter", filter);
+        }
+        model.addAttribute("userList", controllerDAO.findUserByName((String) model.getAttribute("filter")));
+
+        return "userList";
     }
 
+    @PostMapping("users")
+    public String post_showUsers(String filter, Model model){
+        model.addAttribute("users", controllerDAO.findUserByName(filter));
+        model.addAttribute("filter", filter);
 
-    @GetMapping("showRequest/{idRequest}")
-    public String showRequest(Model model, @PathVariable int idRequest){
+        return "userList";
+    }
+    @GetMapping("user/{userMail}")
+    public String showUser(@PathVariable String userMail, Model model){
+        model.addAttribute("user", controllerDAO.findUser(userMail));
 
-        model.addAttribute("creator", controllerDAO.getRequestCreator(idRequest));
-        model.addAttribute("request", controllerDAO.findRequest(idRequest));
-
-        return "request";
+        return "userProfile";
     }
 
-    @GetMapping("createRequest")
-    public String createRequest(Model model){
+    @GetMapping("createMilestone/{userMail}")
+    public String createMilestone(Model model, @PathVariable String userMail){
 
-        Request request = new Request();
+        Milestone milestone = new Milestone();
 
-        model.addAttribute("creator", "33363112W");
-        model.addAttribute("request", request);
+        milestone.setUsersMail(userMail);
 
-        return "requestForm";
+        model.addAttribute("milestone", milestone);
+
+        return "MilestoneForm";
     }
 
-    @PostMapping("createRequest")
-    public String post_createRequest(Model model, @ModelAttribute String creator, @ModelAttribute Request request){
+    @PostMapping("createMilestone")
+    public String post_createMilestone(Model model, @ModelAttribute String creator, @ModelAttribute Request request){
         try{
 
             request.setState("open");
             request.setUser_dni("33363112W");
 
-            controllerDAO.insertRequest(request);
+            //controllerDAO.insertRequest(request);
             System.out.print(request);
         }catch(Exception e){
             e.printStackTrace();
@@ -120,7 +132,7 @@ public class WebController {
         model.addAttribute("message", message);
 
         return "requestPostCreation";
-    }*/
+    }
 
     @GetMapping("/sudoku/facil")
     public String sudokuWidget(){
