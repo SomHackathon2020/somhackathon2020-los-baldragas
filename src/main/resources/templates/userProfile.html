@@ -5,19 +5,19 @@
     <title th:text="${user.getName()}"></title>
 </head>
 <body>
-    Nom:<div th:text="${user.getName()}"></div>
-    Cognom:<div th:text="${user.getSurnames()}"></div>
-    E-mail:<div th:text="${user.getMail()}"></div>
-    Data de naixement:<div th:text="${user.getBirthday()}"></div>
-    Teléfon:<div th:text="${user.getPhone()}"></div>
-    Adreça:<div th:text="${user.getAddress()}"></div>
-    Alçada:<div th:text="${user.getHeight()}"></div>
-    Pes:<div th:text="${user.getWeight()}"></div>
+Nom:<div th:text="${user.getName()}"></div>
+Cognom:<div th:text="${user.getSurnames()}"></div>
+E-mail:<div th:text="${user.getMail()}"></div>
+Data de naixement:<div th:text="${user.getBirthday()}"></div>
+Teléfon:<div th:text="${user.getPhone()}"></div>
+Adreça:<div th:text="${user.getAddress()}"></div>
+Alçada:<div th:text="${user.getHeight()}"></div>
+Pes:<div th:text="${user.getWeight()}"></div>
 
-    <form th:action="|/createMilestone/${user.getMail()}|">
-        <div>
-            <button class="ui button" type="submit">Crear objectiu</button>
-        </div>
-    </form>
+<form th:action="|/createMilestone/${user.getMail()}|">
+    <div>
+        <button class="ui button" type="submit">Crear objectiu</button>
+    </div>
+</form>
 </body>
 </html>

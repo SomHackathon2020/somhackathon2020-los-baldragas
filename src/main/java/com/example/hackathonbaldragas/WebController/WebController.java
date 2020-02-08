@@ -4,13 +4,12 @@ package com.example.hackathonbaldragas.WebController;
 import com.example.hackathonbaldragas.controller.ControllerDAO;
 import com.example.hackathonbaldragas.domain.Milestone;
 import com.example.hackathonbaldragas.domain.Request;
+import com.example.hackathonbaldragas.domain.User;
 import com.opencsv.CSVReader;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.io.Reader;
 import java.nio.file.Files;
@@ -29,67 +28,31 @@ public class WebController {
         this.controllerDAO = controllerDAO;
     }
 
-    /*@Bean
-    public RestTemplate restTemplate(RestTemplateBuilder builder) {
-        return builder.build();
-    }*/
-
     @GetMapping("mainPage")
     public String index(Model model){
         return "mainPage";
     }
 
-    /*@GetMapping("showRequests")
-    public String showRequests(Model model){
-
-        model.addAttribute("requestsList", controllerDAO.findAllRequests());
-
-        return "showRequests";
-    }
-    //User Profile [ADMIN AND PRINCIPAL]
-    @GetMapping("/user/{tempUser}")
-    public String userProfile(@PathVariable String tempUser, Model model){
-        model.addAttribute("user", controllerDAO.findUserByDni(tempUser));
-        return "userProfile";
-    }
-
-    //User List (for requests) [ADMIN]
     @GetMapping("/users")
     public String userList(Model model){
-        if(!model.containsAttribute("filter")) model.addAttribute("filter", new UserFilter());
-        model.addAttribute("users", controllerDAO.findUserByFilter((UserFilter) model.getAttribute("filter")));
-        model.addAttribute("categories", controllerDAO.findAllCategories());
+        User filter = new User();
+        if(!model.containsAttribute("filter")){
+            filter.setName("");
+            model.addAttribute("filter",filter);
+        }
+        System.out.println(filter.getName());
+        model.addAttribute("userList", controllerDAO.findUserByName(((User)model.getAttribute("filter")).getName()));
         return "userList";
     }
     @PostMapping("/users")
-    public String userListPost(UserFilter filter, Model model){
+    public String userListPost(User filter, Model model){
         model.addAttribute("filter",filter);
-        model.addAttribute("users", controllerDAO.findUserByFilter((UserFilter) model.getAttribute("filter")));
-        model.addAttribute( "categories", controllerDAO.findAllCategories());
-        return "userList";
-    }*/
-
-    @GetMapping("users")
-    public String showUsers(Model model){
-
-        if(!model.containsAttribute("filter")){
-            String filter = "";
-            model.addAttribute("filter", filter);
-        }
-        model.addAttribute("userList", controllerDAO.findUserByName((String) model.getAttribute("filter")));
-
+        model.addAttribute("userList", controllerDAO.findUserByName(((User) model.getAttribute("filter")).getName()));
         return "userList";
     }
 
-    @PostMapping("users")
-    public String post_showUsers(String filter, Model model){
-        model.addAttribute("users", controllerDAO.findUserByName(filter));
-        model.addAttribute("filter", filter);
-
-        return "userList";
-    }
-    @GetMapping("user/{userMail}")
-    public String showUser(@PathVariable String userMail, Model model){
+    @GetMapping("/users/{userMail}")
+    public String userProfile(@PathVariable String userMail, Model model){
         model.addAttribute("user", controllerDAO.findUser(userMail));
 
         return "userProfile";
@@ -99,39 +62,32 @@ public class WebController {
     public String createMilestone(Model model, @PathVariable String userMail){
 
         Milestone milestone = new Milestone();
-
-        milestone.setUsersMail(userMail);
-
         model.addAttribute("milestone", milestone);
 
         return "MilestoneForm";
     }
 
-    @PostMapping("createMilestone")
-    public String post_createMilestone(Model model, @ModelAttribute String creator, @ModelAttribute Request request){
+    @PostMapping("createMilestone/{userMail}")
+    public String post_createMilestone(@PathVariable String userMail, Model model, @ModelAttribute Milestone milestone){
         try{
-
-            request.setState("open");
-            request.setUser_dni("33363112W");
-
-            //controllerDAO.insertRequest(request);
-            System.out.print(request);
+            milestone.setUsersMail(userMail);
+            controllerDAO.insertMileStone(milestone);
         }catch(Exception e){
             e.printStackTrace();
-            return "redirect:/requestCreation/" + false;
+            return "redirect:/mileStoneCreation/" + false;
         }
 
-        return "redirect:/requestCreation/" + true;
+        return "redirect:/mileStoneCreation/" + true;
     }
 
-    @GetMapping("requestCreation/{successful}")
+    @GetMapping("mileStoneCreation/{successful}")
     public String requestCreation(@PathVariable boolean successful, Model model){
         String message = successful ? "La teva petició ha sigut creada correctament" : "Hi ha hagut un error i la teva " +
                 "petició no s'ha pogut processar";
 
         model.addAttribute("message", message);
 
-        return "requestPostCreation";
+        return "mileStonePostCreation";
     }
 
     @GetMapping("/sudoku/facil")
