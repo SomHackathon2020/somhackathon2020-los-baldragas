@@ -1,11 +1,6 @@
 package com.example.hackathonbaldragas.domain;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
-import javax.validation.constraints.*;
 import java.time.LocalDate;
-import java.time.Period;
-import java.util.ArrayList;
 import java.util.List;
 
 public class User {
@@ -21,37 +16,35 @@ public class User {
     private boolean senior;
     private List<String> categoriesList;
 
-    public User() {
-    }
+    public User() {}
 
     public User(UserBuilder builder) {
-        username = builder.username;
+        dni = builder.dni;
         password = builder.password;
         name = builder.name;
-        mail = builder.mail;
+        surnames = builder.surnames;
         birthday = builder.birthday;
+        mail = builder.mail;
         phone = builder.phone;
-        uservip = builder.uservip;
-        rating = builder.rating;
-        description = builder.description;
-        minimAge = builder.minimAge;
-        maximAge = builder.maximAge;
-        gender = builder.gender;
-        likesGender = builder.likesGender;
-        interestsList = builder.interestsList;
+        address = builder.address;
+        availability = builder.availability;
+        senior = builder.senior;
+        categoriesList = builder.categoriesList;
     }
 
     @Override
     public String toString() {
         return "User{" +
-                "username='" + username + '\'' +
+                "dni='" + dni +
                 ", name=" + name +
-                ", mail='" + mail + '\'' +
+                ", surnames=" + surnames +
                 ", birthday=" + birthday +
-                ", phone='" + phone + '\'' +
-                ", description=" + description +
-                ", gender=" + gender +
-                ", likesGender=" + likesGender +
+                ", mail='" + mail +
+                ", phone='" + phone +
+                ", address=" + address +
+                ", availability=" + availability +
+                ", senior=" + senior +
+                ", categoriesList=" + categoriesList +
                 '}';
     }
 
@@ -60,11 +53,11 @@ public class User {
         if(o == this) return true;
         if(!(o instanceof User)) return false;
         User u = (User) o;
-        return u.username.equals(this.username);
+        return u.dni.equals(this.dni);
     }
 
-    public String getUsername() {
-        return username;
+    public String getDni() {
+        return dni;
     }
 
     public String getPassword() {
@@ -75,121 +68,71 @@ public class User {
         return name;
     }
 
-    public String getMail() {
-        return mail;
+    public String getSurnames() {
+        return surnames;
     }
 
     public LocalDate getBirthday() {
         return birthday;
     }
 
-    public int getAge(){ return Period.between(birthday, LocalDate.now()).getYears(); }
+    public String getMail() {
+        return mail;
+    }
 
     public String getPhone() {
         return phone;
     }
 
-    public int getUservip() {
-        return uservip ? 1 : 0;
+    public String getAddress() {
+        return phone;
     }
 
-    public double getRating() {
-        return rating;
-    }
+    public String getAvailability() { return availability; }
 
-    public String getDescription() {
-        return description;
-    }
+    public boolean getSenior() { return senior; }
 
-    public int getMinimAge() {
-        return minimAge;
-    }
+    public List<String> getCategoriesList() { return categoriesList; }
 
-    public int getMaximAge() {
-        return maximAge;
-    }
+    public void setDni(String dni) { this.dni = dni; }
 
-    public int getGender() {
-        return gender;
-    }
+    public void setPassword(String password) { this.password = password; }
 
-    public List<Integer> getLikesGender() { return likesGender; }
+    public void setName(String name) { this.name = name; }
 
-    public List<String> getInterestsList() { return interestsList; }
+    public void setSurnames(String surnames) { this.surnames = surnames; }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
+    public void setBirthday(LocalDate birthday) { this.birthday = birthday; }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+    public void setMail(String mail) { this.mail = mail; }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    public void setPhone(String phone) { this.phone = phone; }
 
-    public void setMail(String mail) {
-        this.mail = mail;
-    }
+    public void setAddress(String address) { this.address = address; }
 
-    public void setBirthday(LocalDate birthday) {
-        this.birthday = birthday;
-    }
+    public void setAvailability(String availability) { this.availability = availability; }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
+    public void setSenior(boolean senior) { this.senior = senior; }
 
-    public void setUservip(boolean uservip) {
-        this.uservip=uservip;
-    }
-
-    public void setRating(double rating) {
-        this.rating = rating;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public void setMinimAge(int minimAge) {
-        this.minimAge = minimAge;
-    }
-
-    public void setMaximAge(int maximAge) {
-        this.maximAge = maximAge;
-    }
-
-    public void setGender(int gender) {
-        this.gender = gender;
-    }
-
-    public void setLikesGender (List<Integer> likesGender) { this.likesGender = likesGender; }
-
-    public void setInterestsList(List<String> interestsList) { this.interestsList = interestsList; }
+    public void setCategoriesList(List<String> categoriesList) { this.categoriesList = categoriesList; }
 
     public static class UserBuilder {
-        private String username;
+        private String dni;
         private String password;
         private String name;
-        private String mail;
+        private String surnames;
         private LocalDate birthday;
+        private String mail;
         private String phone;
-        private boolean uservip;
-        private double rating;
-        private String description;
-        private int minimAge;
-        private int maximAge;
-        private int gender;
-        private List<Integer> likesGender;
-        private List<String> interestsList;
+        private String address;
+        private String availability;
+        private boolean senior;
+        private List<String> categoriesList;
 
-        public UserBuilder() {
-        }
+        public UserBuilder() {}
 
-        public UserBuilder username(String username) {
-            this.username = username;
+        public UserBuilder dni(String dni) {
+            this.dni = dni;
             return this;
         }
 
@@ -203,8 +146,8 @@ public class User {
             return this;
         }
 
-        public UserBuilder mail(String mail) {
-            this.mail = mail;
+        public UserBuilder surnames(String surnames) {
+            this.surnames = surnames;
             return this;
         }
 
@@ -213,48 +156,33 @@ public class User {
             return this;
         }
 
+        public UserBuilder mail(String mail) {
+            this.mail = mail;
+            return this;
+        }
+
         public UserBuilder phone(String phone) {
             this.phone = phone;
             return this;
         }
 
-        public UserBuilder uservip(boolean uservip) {
-            this.uservip = uservip;
+        public UserBuilder address(String address) {
+            this.address = address;
             return this;
         }
 
-        public UserBuilder rating(double rating) {
-            this.rating = rating;
+        public UserBuilder availability(String availability) {
+            this.availability = availability;
             return this;
         }
 
-        public UserBuilder description(String description) {
-            this.description = description;
+        public UserBuilder senior(boolean senior) {
+            this.senior = senior;
             return this;
         }
 
-        public UserBuilder minimAge(int minimAge) {
-            this.minimAge = minimAge;
-            return this;
-        }
-
-        public UserBuilder maximAge(int maximAge) {
-            this.maximAge = maximAge;
-            return this;
-        }
-
-        public UserBuilder gender(int gender) {
-            this.gender = gender;
-            return this;
-        }
-
-        public UserBuilder likesGender(List<Integer> likesGender) {
-            this.likesGender = likesGender;
-            return this;
-        }
-
-        public UserBuilder interestsList(List<String> interestsList){
-            this.interestsList = interestsList;
+        public UserBuilder categoriesList(List<String> categoriesList) {
+            this.categoriesList = categoriesList;
             return this;
         }
 
