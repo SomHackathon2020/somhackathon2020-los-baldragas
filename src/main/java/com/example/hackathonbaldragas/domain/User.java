@@ -4,47 +4,45 @@ import java.time.LocalDate;
 import java.util.List;
 
 public class User {
-    private String dni;
+    private String mail;
     private String password;
     private String name;
     private String surnames;
     private LocalDate birthday;
-    private String mail;
     private String phone;
     private String address;
-    private String availability;
-    private boolean senior;
-    private List<Category> categoriesList;
+    private String type;
+    private double height;
+    private double weight;
+
 
     public User() {}
 
     public User(UserBuilder builder) {
-        dni = builder.dni;
+        mail = builder.mail;
         password = builder.password;
         name = builder.name;
         surnames = builder.surnames;
         birthday = builder.birthday;
-        mail = builder.mail;
         phone = builder.phone;
         address = builder.address;
-        availability = builder.availability;
-        senior = builder.senior;
-        categoriesList = builder.categoriesList;
+        type = builder.type;
+        height = builder.height;
+        weight = builder.weight;
     }
 
     @Override
     public String toString() {
         return "User{" +
-                "dni='" + dni +
+                "mail='" + mail +
                 ", name=" + name +
                 ", surnames=" + surnames +
                 ", birthday=" + birthday +
-                ", mail='" + mail +
                 ", phone='" + phone +
                 ", address=" + address +
-                ", availability=" + availability +
-                ", senior=" + senior +
-                ", categoriesList=" + categoriesList +
+                ", type=" + type +
+                ", height=" + height +
+                ", weight=" + weight +
                 '}';
     }
 
@@ -53,90 +51,105 @@ public class User {
         if(o == this) return true;
         if(!(o instanceof User)) return false;
         User u = (User) o;
-        return u.dni.equals(this.dni);
-    }
-
-    public String getDni() {
-        return dni;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getSurnames() {
-        return surnames;
-    }
-
-    public LocalDate getBirthday() {
-        return birthday;
+        return u.mail.equals(this.mail);
     }
 
     public String getMail() {
         return mail;
     }
 
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getSurnames() {
+        return surnames;
+    }
+
+    public void setSurnames(String surnames) {
+        this.surnames = surnames;
+    }
+
+    public LocalDate getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(LocalDate birthday) {
+        this.birthday = birthday;
+    }
+
     public String getPhone() {
         return phone;
     }
 
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
     public String getAddress() {
-        return phone;
+        return address;
     }
 
-    public String getAvailability() { return availability; }
-
-    public String getSenior() {
-        if(senior)
-            return "1";
-        return "0";
+    public void setAddress(String address) {
+        this.address = address;
     }
 
-    public List<Category> getCategoriesList() { return categoriesList; }
+    public String getType() {
+        return type;
+    }
 
-    public void setDni(String dni) { this.dni = dni; }
+    public void setType(String type) {
+        this.type = type;
+    }
 
-    public void setPassword(String password) { this.password = password; }
+    public double getHeight() {
+        return height;
+    }
 
-    public void setName(String name) { this.name = name; }
+    public void setHeight(double height) {
+        this.height = height;
+    }
 
-    public void setSurnames(String surnames) { this.surnames = surnames; }
+    public double getWeight() {
+        return weight;
+    }
 
-    public void setBirthday(LocalDate birthday) { this.birthday = birthday; }
-
-    public void setMail(String mail) { this.mail = mail; }
-
-    public void setPhone(String phone) { this.phone = phone; }
-
-    public void setAddress(String address) { this.address = address; }
-
-    public void setAvailability(String availability) { this.availability = availability; }
-
-    public void setSenior(boolean senior) { this.senior = senior; }
-
-    public void setCategoriesList(List<Category> categoriesList) { this.categoriesList = categoriesList; }
+    public void setWeight(double weight) {
+        this.weight = weight;
+    }
 
     public static class UserBuilder {
-        private String dni;
+        private String mail;
         private String password;
         private String name;
         private String surnames;
         private LocalDate birthday;
-        private String mail;
         private String phone;
         private String address;
-        private String availability;
-        private boolean senior;
-        private List<Category> categoriesList;
+        private String type;
+        private double height;
+        private double weight;
 
         public UserBuilder() {}
 
-        public UserBuilder dni(String dni) {
-            this.dni = dni;
+        public UserBuilder mail(String mail) {
+            this.mail = mail;
             return this;
         }
 
@@ -160,10 +173,7 @@ public class User {
             return this;
         }
 
-        public UserBuilder mail(String mail) {
-            this.mail = mail;
-            return this;
-        }
+
 
         public UserBuilder phone(String phone) {
             this.phone = phone;
@@ -175,20 +185,17 @@ public class User {
             return this;
         }
 
-        public UserBuilder availability(String availability) {
-            this.availability = availability;
+
+        public UserBuilder height(double height) {
+            this.height = height;
             return this;
         }
 
-        public UserBuilder senior(boolean senior) {
-            this.senior = senior;
+        public UserBuilder weight(double weight) {
+            this.weight = weight;
             return this;
         }
 
-        public UserBuilder categoriesList(List<Category> categoriesList) {
-            this.categoriesList = categoriesList;
-            return this;
-        }
 
         public User build() {
             return new User(this);

@@ -1,73 +1,47 @@
-CREATE TABLE category (
-                           name        VARCHAR2(150) NOT NULL,
-                           description   VARCHAR2(500)
+CREATE TABLE activities (
+                          timestampinitial   TIMESTAMP WITH LOCAL TIME ZONE NOT NULL,
+                          timestampend      TIMESTAMP WITH LOCAL TIME ZONE NOT NULL,
+                          content           VARCHAR2(30000) NOT NULL,
+                          type              VARCHAR2(30) NOT NULL,
+                          users_mail        VARCHAR2(50) NOT NULL
 );
 
-ALTER TABLE category ADD CONSTRAINT category_pk PRIMARY KEY ( name );
+ALTER TABLE activities
+    ADD CONSTRAINT activities_pk PRIMARY KEY ( users_mail,
+                                             timestampinitial,
+                                             timestampend );
 
-CREATE TABLE request (
-                          user_dni      VARCHAR2(9) NOT NULL,
-                          id            bigint auto_increment, --NOT NULL,
-                          state         VARCHAR2(50),
-                          description   VARCHAR2(500)
+CREATE TABLE milestones (
+                           dateinitial   DATE NOT NULL,
+                           dateend       DATE NOT NULL,
+                           target        NUMBER NOT NULL,
+                           users_mail    VARCHAR2(50) NOT NULL
 );
 
+ALTER TABLE milestones
+    ADD CONSTRAINT milestones_pk PRIMARY KEY ( dateinitial,
+                                              dateend,
+                                              users_mail );
 
-
-CREATE TABLE user (
-                         dni               VARCHAR2(9) NOT NULL,
-                         password          VARCHAR2(200) NOT NULL,
-                         name            VARCHAR2(30) NOT NULL,
-                         surnames         VARCHAR2(100) NOT NULL,
-                         birthday   DATE NOT NULL,
-                         mail              VARCHAR2(50) NOT NULL,
-                         phone          VARCHAR2(9) NOT NULL,
-                         address         VARCHAR2(150) NOT NULL,
-                         availability    VARCHAR2(100) NOT NULL,
-                         senior            VARCHAR2(1) NOT NULL
+CREATE TABLE users (
+                       mail       VARCHAR2(50) NOT NULL,
+                       password   VARCHAR2(200) NOT NULL,
+                       name       VARCHAR2(30) NOT NULL,
+                       surnames   VARCHAR2(100) NOT NULL,
+                       birthday   DATE NOT NULL,
+                       phone      VARCHAR2(9) NOT NULL,
+                       address    VARCHAR2(150) NOT NULL,
+                       type       VARCHAR2(50) NOT NULL,
+                       height     NUMBER,
+                       weight     NUMBER
 );
 
-ALTER TABLE user ADD CONSTRAINT user_pk PRIMARY KEY ( dni );
+ALTER TABLE users ADD CONSTRAINT users_pk PRIMARY KEY ( mail );
 
-CREATE TABLE user_category (
-                                   user_dni        VARCHAR2(9) NOT NULL,
-                                   category_name   VARCHAR2(150) NOT NULL
-);
+ALTER TABLE activities
+    ADD CONSTRAINT activities_users_fk FOREIGN KEY ( users_mail )
+        REFERENCES users ( mail );
 
-ALTER TABLE user_category ADD CONSTRAINT user_category_pk PRIMARY KEY ( user_dni,
-                                                                                category_name );
-
-CREATE TABLE link (
-                         user_dni_senior   VARCHAR2(9) NOT NULL,
-                         user_dni_junior    VARCHAR2(9) NOT NULL,
-                         date          DATE NOT NULL,
-                         assessment     VARCHAR2(30),
-                         comment     VARCHAR2(500)
-);
-
-ALTER TABLE link
-    ADD CONSTRAINT link_pk PRIMARY KEY ( user_dni_senior,
-                                            user_dni_junior,
-                                            date );
-
-ALTER TABLE request
-    ADD CONSTRAINT request_user_fk FOREIGN KEY ( user_dni )
-        REFERENCES user ( dni );
-
-ALTER TABLE user_category
-    ADD CONSTRAINT user_category_category_fk FOREIGN KEY ( category_name )
-        REFERENCES category ( name );
-
-ALTER TABLE user_category
-    ADD CONSTRAINT user_category_user_fk FOREIGN KEY ( user_dni )
-        REFERENCES user ( dni );
-
-ALTER TABLE link
-    ADD CONSTRAINT link_user_fk FOREIGN KEY ( user_dni_junior )
-        REFERENCES user ( dni );
-
-ALTER TABLE link
-    ADD CONSTRAINT link_user_fkv2 FOREIGN KEY ( user_dni_senior )
-        REFERENCES user ( dni );
-
-
+ALTER TABLE milestones
+    ADD CONSTRAINT milestones_users_fk FOREIGN KEY ( users_mail )
+        REFERENCES users ( mail );
