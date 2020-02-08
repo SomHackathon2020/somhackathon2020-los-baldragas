@@ -122,7 +122,7 @@ public class Activity {
 
                 double deltaTime = ((timestampList.get(timestampList.size() - 1).getTime() - timestampList.get(0).getTime()) / 1000); //segundos
 
-                return((distancia / deltaTime) * 80 * (distancia / 1000)); //kcal
+                return Math.abs((distancia / deltaTime) * 80 * (distancia / 1000)); //kcal
             }
         }
         catch(Exception e){
