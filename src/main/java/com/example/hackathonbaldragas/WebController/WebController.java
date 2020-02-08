@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.client.RestTemplate;
 
 @Controller
@@ -34,5 +35,29 @@ public class WebController {
         model.addAttribute("requestsList", controllerDAO.findAllRequests());
 
         return "showRequests";
+    }
+
+    @GetMapping("/sudoku/facil")
+    public String sudokuWidget(){
+        return "sudokuWidgetEasy";
+    }
+
+    @GetMapping("/sudoku/mig")
+    public String sudokuWidget2(){
+        return "sudokuWidgetMedium";
+    }
+
+    @GetMapping("/sudoku/dificil")
+    public String sudokuWidget3(){
+        return "sudokuWidgetHard";
+    }
+
+    @GetMapping("/Receptes")
+    public String recetas(){
+        return "recetas";
+    }
+    @GetMapping("/Telefons")
+    public String telefons(){
+        return "telefons";
     }
 }
