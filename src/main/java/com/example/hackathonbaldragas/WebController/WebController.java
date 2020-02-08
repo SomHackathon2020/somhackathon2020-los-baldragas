@@ -149,8 +149,16 @@ public class WebController {
 
 
     @GetMapping("/activity/{mail}")
-    public String mapCaps(@PathVariable String mail, Model model){
+    public String activity(@PathVariable String mail, Model model){
         List<Activity> list = controllerDAO.findActivitiesByUser(mail);
+        model.addAttribute("activities", list);
+        return "activity";
+    }
+
+
+    @GetMapping("/activities")
+    public String activities(Model model){
+        List<Activity> list = controllerDAO.findAllActivities();
         model.addAttribute("activities", list);
         return "activity";
     }

@@ -34,7 +34,7 @@ INSERT INTO ACTIVITIES (timestampinitial, timestampend, content, type, users_mai
     "Long": "2,437519"
   }
 ]','walk','pepmogas@mataro.com');
-INSERT INTO ACTIVITIES (timestampinitial, timestampend, content, type, users_mail) values('2015-10-15 05:44:30.08','2016-11-16 06:55:49.11','[
+INSERT INTO ACTIVITIES (timestampinitial, timestampend, content, type, users_mail) values('2016-11-16 06:55:40.11','2016-11-16 06:55:49.11','[
   {
     "Timestamp": "2016-11-16 06:55:40.11"
   },
