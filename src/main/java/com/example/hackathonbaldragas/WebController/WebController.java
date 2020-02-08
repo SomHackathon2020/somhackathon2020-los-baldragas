@@ -70,7 +70,7 @@ public class WebController {
     public String userListPost(UserFilter filter, Model model){
         model.addAttribute("filter",filter);
         model.addAttribute("users", controllerDAO.findUserByFilter((UserFilter) model.getAttribute("filter")));
-        model.addAttribute("categories", controllerDAO.findAllCategories());
+        model.addAttribute( "categories", controllerDAO.findAllCategories());
         return "userList";
     }
 
