@@ -90,7 +90,11 @@ public class User {
 
     public String getAvailability() { return availability; }
 
-    public boolean getSenior() { return senior; }
+    public String getSenior() {
+        if(senior)
+            return "1";
+        return "0";
+    }
 
     public List<Category> getCategoriesList() { return categoriesList; }
 
