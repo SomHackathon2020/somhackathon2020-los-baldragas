@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Activity</title>
+</head>
+<body>
+
+<h1>Activity</h1>
+
+<ul>
+    <div class="card">
+        <li th:each="activity : ${activities}"
+            th:id="'activity_' + ${activity.getUsersMail()}">
+            <div><span><b>Mail: </b></span><span th:text="${activity.getUsersMail()}"></span></div>
+            <div><span><b>TimestampInicial: </b></span><span th:text="${activity.getTimestampInitial()}"></span></div>
+            <div><span><b>TimestampFinal: </b></span><span th:text="${activity.getTimestampEnd()}"></span></div>
+            <div><span><b>Content: </b></span><span th:text="${activity.getContent()}"></span></div>
+
+
+            <br>
+
+        </li>
+    </div>
+    <br>
+</ul>
+
+
+</body>
+</html>

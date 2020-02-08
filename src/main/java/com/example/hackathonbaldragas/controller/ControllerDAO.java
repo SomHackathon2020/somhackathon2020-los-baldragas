@@ -83,6 +83,7 @@ public class ControllerDAO {
 
     //ACTIVITY
     public List<Activity> findAllActivities() { return activityDAO.findAll(); }
+    public List<Activity> findActivitiesByUser(String mail) {return activityDAO.findByUser(mail);}
 
     //MILESTONE
     public int insertMilestone(Milestone milestone) { return milestoneDAO.insert(milestone); }
