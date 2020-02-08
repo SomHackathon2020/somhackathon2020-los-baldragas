@@ -7,9 +7,11 @@ ALTER TABLE category ADD CONSTRAINT category_pk PRIMARY KEY ( name );
 
 CREATE TABLE request (
                           user_dni   VARCHAR2(9) NOT NULL,
-                          id            INTEGER NOT NULL,
+                          id            bigint auto_increment, --NOT NULL,
                           description   VARCHAR2(500)
 );
+
+
 
 CREATE TABLE user (
                          dni               VARCHAR2(9) NOT NULL,

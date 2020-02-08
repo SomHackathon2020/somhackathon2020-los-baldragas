@@ -24,5 +24,7 @@ public class HackathonBaldragasApplication implements CommandLineRunner {
         controllerDAO.findAllUsers().forEach(System.out::println);
 
         controllerDAO.findAllCategories().forEach(System.out::println);
+
+        controllerDAO.findAllRequests().forEach(System.out::println);
     }
 }
