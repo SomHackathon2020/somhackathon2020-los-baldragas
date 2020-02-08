@@ -1,6 +1,7 @@
 package com.example.hackathonbaldragas;
 
 import com.example.hackathonbaldragas.controller.ControllerDAO;
+import com.example.hackathonbaldragas.domain.Link;
 import com.example.hackathonbaldragas.domain.User;
 import com.example.hackathonbaldragas.domain.Category;
 import com.example.hackathonbaldragas.domain.User;
@@ -26,7 +27,7 @@ public class HackathonBaldragasApplication implements CommandLineRunner {
     public void run(String... args) throws Exception {
         System.out.println("READY");
 
-        controllerDAO.findAllUsers().forEach(System.out::println);
+        /*controllerDAO.findAllUsers().forEach(System.out::println);
         controllerDAO.findAllCategories().forEach(System.out::println);
 
         controllerDAO.findAllRequests().forEach(System.out::println);
@@ -40,6 +41,9 @@ public class HackathonBaldragasApplication implements CommandLineRunner {
 
         controllerDAO.findAllLinks().forEach(System.out::println);
 
+        controllerDAO.insertNewLink(new Link.LinkBuilder().user_dni_senior("AAAAAAA").user_dni_junior("BBBBBB").date(LocalDate.of(1990,10,10)).build());
+
+        controllerDAO.findAllLinks().forEach(System.out::println);*/
 
 
     }

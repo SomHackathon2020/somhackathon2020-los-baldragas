@@ -63,5 +63,9 @@ public class ControllerDAO {
     public List<Link> findAllLinks() {
         return linkDAO.findAll();
     }
+    public int insertLink(Link link){return linkDAO.insert(link);}
+    public int updateLink(Link link){return linkDAO.update(link);}
+    public int insertNewLink(Link link){return linkDAO.insertNew(link);}
+    public int deleteLink(Link link){return linkDAO.delete(link);}
 
 }
