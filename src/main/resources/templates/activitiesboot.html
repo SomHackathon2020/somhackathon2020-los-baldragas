@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title></title>
+  <link rel="stylesheet" type="text/css" href="/css/demo_1/style.css" />
+  <link rel="stylesheet" type="text/css" href="/css/shared/style.css" />
+  <!-- plugins:css -->
+  <link rel="stylesheet" href="../assets/vendors/iconfonts/mdi/css/materialdesignicons.min.css">
+  <link rel="stylesheet" href="../assets/vendors/iconfonts/ionicons/css/ionicons.css">
+  <link rel="stylesheet" href="../assets/vendors/iconfonts/typicons/src/font/typicons.css">
+  <link rel="stylesheet" href="../assets/vendors/iconfonts/flag-icon-css/css/flag-icon.min.css">
+  <link rel="stylesheet" href="../assets/vendors/css/vendor.bundle.base.css">
+  <link rel="stylesheet" href="../assets/vendors/css/vendor.bundle.addons.css">
+  <!-- endinject -->
+  <!-- plugin css for this page -->
+  <!-- End plugin css for this page -->
+  <!-- inject:css -->
+  <link rel="stylesheet" href="../assets/css/shared/style.css">
+  <!-- endinject -->
+  <!-- Layout styles -->
+  <link rel="stylesheet" href="../assets/css/demo_1/style.css">
+  <!-- End Layout styles -->
+  <link rel="shortcut icon" href="../assets/images/favicon.png" />
+</head>
+<body>
+<div class="container-scroller">
+  <!-- partial:partials/_navbar.html -->
+
+  <!-- partial -->
+  <div class="container-fluid page-body-wrapper">
+    <!-- partial:partials/_sidebar.html -->
+    <nav class="sidebar sidebar-offcanvas" id="sidebar">
+      <ul class="nav">
+        <li class="nav-item nav-profile">
+          <a href="#" class="nav-link">
+            <div class="text-wrapper">
+              <p class="profile-name" th:text ="${mail}">   </p>
+            </div>
+          </a>
+        </li>
+        <li class="nav-item nav-category">Main Menu</li>
+        <li class="nav-item">
+          <a class="nav-link" href="index.html">
+            <i class="menu-icon typcn typcn-document-text"></i>
+            <span class="menu-title">La teva activitat</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <!-- partial -->
+    <div class="main-panel">
+      <div class="content-wrapper">
+        <!-- Page Title Header Starts-->
+        <div class="row page-title-header">
+          <div class="col-12">
+            <div class="page-header">
+              <h4 class="page-title">Activitat i objectius</h4>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="page-header-toolbar">
+              <div class="btn-group toolbar-item" role="group" aria-label="Basic example">
+                <button type="button" class="btn btn-secondary"><i class="mdi mdi-chevron-left"></i></button>
+                <button type="button" class="btn btn-secondary">09/02/2020</button>
+                <button type="button" class="btn btn-secondary"><i class="mdi mdi-chevron-right"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Page Title Header Ends-->
+        <div class="row">
+          <div class="col-md-12 grid-margin">
+            <div class="card">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4 grid-margin stretch-card">
+            <div class="card">
+              <div class="card-body">
+                <h4 class="card-title mb-0">Recent</h4>
+                <div class="d-flex py-2 border-bottom">
+                  <div class="wrapper">
+                    <small class="text-muted">Febrer 9, 2020</small>
+                    <p class="font-weight-semibold text-gray mb-0">Volant</p>
+                  </div>
+                  <small class="text-muted ml-auto">15 minuts</small>
+                </div>
+                <div class="d-flex py-2 border-bottom">
+                  <div class="wrapper">
+                    <small class="text-muted">Febrer 9, 2020</small>
+                    <p class="font-weight-semibold text-gray mb-0">Cintura</p>
+                  </div>
+                  <small class="text-muted ml-auto">10 minuts</small>
+                </div>
+                <div class="d-flex py-2 border-bottom">
+                  <div class="wrapper">
+                    <small class="text-muted">Febrer 9, 2020</small>
+                    <p class="font-weight-semibold text-gray mb-0">Timó</p>
+                  </div>
+                  <small class="text-muted ml-auto">10 minuts</small>
+                </div>
+                <div class="d-flex pt-2">
+                  <div class="wrapper">
+                    <small class="text-muted">Febrer 9, 2020</small>
+                    <p class="font-weight-semibold text-gray mb-0">Caball</p>
+                  </div>
+                  <small class="text-muted ml-auto">15 minuts</small>
+                </div>
+                <a class="d-block mt-5" href="#">Més</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 grid-margin stretch-card">
+            <div class="card">
+              <div class="card-body">
+                <div class="d-flex justify-content-between pb-3">
+                  <h4 class="card-title mb-0">Activitats</h4>
+                  <p class="mb-0 text-muted">20 finished</p>
+                </div>
+                <li th:each="activity : ${activities}"
+                    th:id="'activity_' + ${activity.getUsersMail()}">
+                  <div><span><b>Mail: </b></span><span th:text="${activity.getUsersMail()}"></span></div>
+                  <div><span><b>TimestampInicial: </b></span><span th:text="${activity.getTimestampInitial()}"></span></div>
+                  <div><span><b>TimestampFinal: </b></span><span th:text="${activity.getTimestampEnd()}"></span></div>
+                  <div><span><b>Burned Kcal: </b></span><span th:text="${activity.getKcal()}"></span></div>
+                  <div><span><b>Identificador de la màquina: </b></span><span th:text="${activity.getId_machine()}"></span></div>
+
+
+                  <br>
+
+                </li>
+                <a class="d-block mt-3" href="#">Més</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 grid-margin stretch-card">
+            <div class="card">
+              <div class="card-body">
+                <h4 class="card-title mb-0">Objectius</h4><br>
+                <div class="table-responsive">
+                  <iframe id="igraph" scrolling="no" style="border:none;" seamless="seamless" src="https://plot.ly/~chris/1638.embed" height="525" width="100%"></iframe>
+                </div>
+                <a class="d-block mt-3" href="#">Més</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- content-wrapper ends -->
+      <!-- partial:partials/_footer.html -->
+      <!-- partial -->
+    </div>
+    <!-- main-panel ends -->
+  </div>
+  <!-- page-body-wrapper ends -->
+</div>
+<!-- container-scroller -->
+<!-- plugins:js -->
+<script src="../assets/vendors/js/vendor.bundle.base.js"></script>
+<script src="../assets/vendors/js/vendor.bundle.addons.js"></script>
+<!-- endinject -->
+<!-- Plugin js for this page-->
+<!-- End plugin js for this page-->
+<!-- inject:js -->
+<script src="../assets/js/shared/off-canvas.js"></script>
+<script src="../assets/js/shared/misc.js"></script>
+<!-- endinject -->
+<!-- Custom js for this page-->
+<script src="../assets/js/demo_1/dashboard.js"></script>
+<!-- End custom js for this page-->
+</body>
+</html>
