@@ -61,7 +61,6 @@ public class UserDAO {
 
 
     public List<User> findByName(String name){
-        System.out.println("Name = " + name.getClass());
         if(name.equals("") || name == null){
             return findAll();
         }

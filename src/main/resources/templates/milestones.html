@@ -7,8 +7,8 @@
 <body>
         <div th:each="milestone : ${milestones}">
             <div th:text="${milestone.getUsersMail()}"></div>
-            objective: <i th:text="${milestone.getProgress()}"></i> of <i th:text="${milestone.getTarget()}"></i> kcal <b th:text="| (${milestone.getProgressPercent()}%)|"></b><br>
-            started: <div th:text="${#dates.format(milestone.getInitialDate(), 'yyy-MM-dd')}"></div>
+            objective:<i th:text="${milestone.getProgress()}"></i> of <i th:text="${milestone.getTarget()}"></i> kcal <b th:text="| (${milestone.getProgressPercent()}%)|"></b><br>
+            started: <div th:text="${milestone.getInitialDateString()}"></div>
             will end: <div th:date="${milestone.getFinalDate()}"></div>
         </div>
 </body>

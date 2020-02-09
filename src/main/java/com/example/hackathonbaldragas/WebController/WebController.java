@@ -4,9 +4,7 @@ package com.example.hackathonbaldragas.WebController;
 import com.example.hackathonbaldragas.controller.ControllerDAO;
 import com.example.hackathonbaldragas.domain.Activity;
 import com.example.hackathonbaldragas.domain.User;
-
 import com.example.hackathonbaldragas.domain.Milestone;
-
 import com.example.hackathonbaldragas.domain.User;
 import com.opencsv.CSVReader;
 import org.springframework.stereotype.Controller;
@@ -47,13 +45,13 @@ public class WebController {
         }
         System.out.println(filter.getName());
         model.addAttribute("userList", controllerDAO.findUserByName(((User)model.getAttribute("filter")).getName()));
-        return "userList";
+        return "searchUsers";
     }
     @PostMapping("/users")
     public String userListPost(User filter, Model model){
         model.addAttribute("filter",filter);
         model.addAttribute("userList", controllerDAO.findUserByName(((User) model.getAttribute("filter")).getName()));
-        return "userList";
+        return "searchUsers";
     }
 
     @GetMapping("/users/{userMail}")
