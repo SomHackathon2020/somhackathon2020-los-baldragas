@@ -2,7 +2,6 @@ package com.example.hackathonbaldragas.persistence;
 
 import com.example.hackathonbaldragas.domain.Category;
 import com.example.hackathonbaldragas.domain.User;
-import com.example.hackathonbaldragas.domain.UserFilter;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;

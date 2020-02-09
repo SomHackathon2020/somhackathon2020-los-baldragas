@@ -1,7 +1,6 @@
 package com.example.hackathonbaldragas.persistence;
 
 import com.example.hackathonbaldragas.domain.Activity;
-import com.example.hackathonbaldragas.domain.Link;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -63,10 +62,5 @@ public class ActivityDAO {
     public int delete(Activity activity){
         return jdbcTemplate.update(DELETE,activity.getTimestampInitial(),activity.getTimestampEnd(),activity.getUsersMail());
     }
-
-
-
-
-
 
 }

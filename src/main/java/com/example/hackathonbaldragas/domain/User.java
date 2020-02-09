@@ -110,9 +110,7 @@ public class User {
         this.address = address;
     }
 
-    public String getType() {
-        return type;
-    }
+    public String getType() { return type; }
 
     public void setType(String type) {
         this.type = type;
@@ -178,7 +176,6 @@ public class User {
             return this;
         }
 
-
         public UserBuilder phone(String phone) {
             this.phone = phone;
             return this;
@@ -188,7 +185,6 @@ public class User {
             this.address = address;
             return this;
         }
-
 
         public UserBuilder height(double height) {
             this.height = height;
@@ -200,11 +196,9 @@ public class User {
             return this;
         }
 
-
         public User build() {
             return new User(this);
         }
-
 
     }
 }
