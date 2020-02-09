@@ -18,8 +18,6 @@ public class CategoryDAO {
     private final String FIND_ALL = "select * from category";
     private final String INSERT = "insert into category (name, description) values(?,?)";
 
-
-
     private final RowMapper<Category> mapper = (resultSet, i) -> {
         return new Category.CategoryBuilder()
                 .name(resultSet.getString("name"))
@@ -35,7 +33,5 @@ public class CategoryDAO {
     public List<Category> findAll() {
         return jdbcTemplate.query(FIND_ALL, new BeanPropertyRowMapper<>(Category.class));
     }
-
-
 
 }

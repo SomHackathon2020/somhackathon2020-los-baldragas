@@ -5,6 +5,11 @@
     <title>Milestones</title>
 </head>
 <body>
-        <div th:each="milestone : ${milestones}">by: <b th:text="${milestone.getUsersMail()}"></b>, objective: <i th:text="${milestone.getTarget()}"></i>, from: <b th:text="${milestone.getInitialDate()}"></b>, to: <i th:text="${milestone.getFinalDate()}"></i></div>
+        <div th:each="milestone : ${milestones}">
+            <div th:text="${milestone.getUsersMail()}"></div>
+            objective: <i th:text="${milestone.getProgress()}"></i> of <i th:text="${milestone.getTarget()}"></i> kcal <b th:text="| (${milestone.getProgressPercent()}%)|"></b><br>
+            started: <div th:text="${#dates.format(milestone.getInitialDate(), 'yyy-MM-dd')}"></div>
+            will end: <div th:date="${milestone.getFinalDate()}"></div>
+        </div>
 </body>
 </html>
