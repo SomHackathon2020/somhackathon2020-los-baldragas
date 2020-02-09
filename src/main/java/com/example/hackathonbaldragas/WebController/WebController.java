@@ -137,7 +137,7 @@ public class WebController {
     public String activities(Model model){
         List<Activity> list = controllerDAO.findAllActivities();
         model.addAttribute("activities", list);
-        return "activity";
+        return "activitiesboot";
     }
 
     @GetMapping("/map/Parcs")
