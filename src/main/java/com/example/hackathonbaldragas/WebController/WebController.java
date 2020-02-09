@@ -168,6 +168,10 @@ public class WebController {
         return "activity";
     }
 
+    @GetMapping("/map/Parcs")
+    public String mapParcs(Model model){
+        return "mapParcs";
+    }
 
     @GetMapping("/map/CAPS")
     public String mapCaps(Model model){
