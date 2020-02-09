@@ -37,15 +37,27 @@
         <li class="nav-item nav-profile">
           <a href="#" class="nav-link">
             <div class="text-wrapper">
-              <p class="profile-name" th:text ="${mail}">   </p>
+              <p class="profile-name">Allen Moreno</p>
             </div>
           </a>
         </li>
-        <li class="nav-item nav-category">Main Menu</li>
+        <li class="nav-item nav-category">Menú Principal</li>
         <li class="nav-item">
-          <a class="nav-link" href="index.html">
+          <a class="nav-link" th:href="|/users|">
+            <i class="menu-icon typcn typcn-document-text"></i>
+            <span class="menu-title">El teu perfil</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" th:href="|/users|">
             <i class="menu-icon typcn typcn-document-text"></i>
             <span class="menu-title">La teva activitat</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" th:href="|/users|">
+            <i class="menu-icon typcn typcn-document-text"></i>
+            <span class="menu-title">Buscar Usuaris</span>
           </a>
         </li>
       </ul>
@@ -149,7 +161,11 @@
                     will end: <div th:text="${milestone.getDateend().toString()}"></div><br>
                   </div>
                 </div>
-                <a class="d-block mt-3" href="#">Més</a>
+                <a class="d-block mt-3" href="#">
+                  <form th:action="|/createMilestone/${activities.get(0).getUsersMail()}|">
+                    <div><button type="submit" class="btn btn-primary">Crear Objectiu</button></div>
+                  </form>
+                </a>
               </div>
             </div>
           </div>
