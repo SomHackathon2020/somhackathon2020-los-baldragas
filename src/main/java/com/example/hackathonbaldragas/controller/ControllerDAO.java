@@ -13,17 +13,13 @@ public class ControllerDAO {
 
     private final UserDAO userDAO;
     private final CategoryDAO categoryDAO;
-    private final RequestDAO requestDAO;
-    private final LinkDAO linkDAO;
     private final ActivityDAO activityDAO;
     private final MilestoneDAO milestoneDAO;
 
 
-    public ControllerDAO(UserDAO u, CategoryDAO c, RequestDAO r, LinkDAO l, ActivityDAO a, MilestoneDAO m) {
+    public ControllerDAO(UserDAO u, CategoryDAO c, ActivityDAO a, MilestoneDAO m) {
         this.userDAO = u;
         this.categoryDAO = c;
-        this.requestDAO = r;
-        this.linkDAO = l;
         this.activityDAO = a;
         this.milestoneDAO = m;
     }
@@ -53,7 +49,7 @@ public class ControllerDAO {
         List<Milestone> result = milestoneDAO.findMilestonesByUser(userMail);
         for(Milestone mile : result) {
             double count = 0.0;
-            for(Activity act: getActivityBetweenDates(userMail, mile.getInitialDate(), mile.getFinalDate())) count += act.getKcal();
+            for(Activity act: getActivityBetweenDates(userMail, mile.getDateinitial(), mile.getDateend())) count += act.getKcal();
             mile.setProgress(count);
         }
         return result;

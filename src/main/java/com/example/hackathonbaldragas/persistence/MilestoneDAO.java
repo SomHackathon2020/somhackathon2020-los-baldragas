@@ -22,10 +22,10 @@ public class MilestoneDAO {
 
     private final RowMapper<Milestone> mapper = (resultSet, i) -> {
         return new Milestone.MilestoneBuilder()
-                .initialDate(resultSet.getDate("initialDate").toLocalDate())
-                .finalDate(resultSet.getDate("finalDate").toLocalDate())
+                .dateinitial(resultSet.getDate("dateinitial").toLocalDate())
+                .dateend(resultSet.getDate("dateend").toLocalDate())
                 .target(resultSet.getFloat("target"))
-                .usersMail(resultSet.getString("usersMail"))
+                .users_mail(resultSet.getString("users_mail"))
                 .build();
     };
 
@@ -35,7 +35,7 @@ public class MilestoneDAO {
     }
 
     public int insert(Milestone milestone){
-        return jdbcTemplate.update(INSERT, milestone.getInitialDate(), milestone.getFinalDate(), milestone.getTarget(), milestone.getUsersMail());
+        return jdbcTemplate.update(INSERT, milestone.getDateinitial(), milestone.getDateend(), milestone.getTarget(), milestone.getUsers_mail());
     }
 
     public List<Milestone> findAll() {

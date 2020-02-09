@@ -2,7 +2,7 @@
 INSERT INTO USERS (mail, password, name, surnames, birthday, phone, address, type, height, weight) VALUES ('pepmogas@mataro.com', '{noop}password', 'Pep', 'Mogas','1930-9-7','666555444','Cami Ral 123','user','170','80');
 INSERT INTO USERS (mail, password, name, surnames, birthday, phone, address, type,height,weight) VALUES ('laia@mataro.com', '{noop}password', 'Laia', 'Arquera','1998-3-2','677111687','Plaça Ajuntament 1','metge','165','55');
 
-INSERT INTO ACTIVITIES (timestampinitial, timestampend, id_machine,content, type, users_mail) values('2016-11-16 06:55:40.11','2016-11-16 06:56:30.11','Tecnocampus2AFX','[
+INSERT INTO ACTIVITIES (timestampinitial, timestampend, id_machine,content, type, users_mail) values('2016-11-16 06:55:40.11','2016-11-16 06:56:30.11','Escorxador2','[
   {
     "Timestamp": "2016-11-16 06:55:40.11",
     "Lat": "41,53152",
@@ -34,7 +34,7 @@ INSERT INTO ACTIVITIES (timestampinitial, timestampend, id_machine,content, type
     "Long": "2,437519"
   }
 ]','walk','pepmogas@mataro.com');
-INSERT INTO ACTIVITIES (timestampinitial, timestampend, id_machine,content, type, users_mail) values('2016-11-16 06:55:40.11','2016-11-16 06:55:49.11','438416SDF','[
+INSERT INTO ACTIVITIES (timestampinitial, timestampend, id_machine,content, type, users_mail) values('2016-11-16 06:55:40.11','2016-11-16 06:55:49.11','TCM1','[
   {
     "Timestamp": "2016-11-16 06:55:40.11"
   },
@@ -68,7 +68,7 @@ INSERT INTO ACTIVITIES (timestampinitial, timestampend, id_machine,content, type
 ]','rpm','laia@mataro.com');
 
 
-INSERT INTO ACTIVITIES (timestampinitial, timestampend, id_machine,content, type, users_mail) values('2011-04-21 01:50:40.04','2011-04-21 01:51:30.04','Tecnocampus2AFX','[
+INSERT INTO ACTIVITIES (timestampinitial, timestampend, id_machine,content, type, users_mail) values('2011-04-21 01:50:40.04','2011-04-21 01:51:30.04','Escorxador2','[
   {
     "Timestamp": "2011-04-21 01:50:40.04",
     "Lat": "42,53252",
@@ -101,7 +101,7 @@ INSERT INTO ACTIVITIES (timestampinitial, timestampend, id_machine,content, type
   }
 ]','walk','pepmogas@mataro.com');
 
-INSERT INTO ACTIVITIES (timestampinitial, timestampend, id_machine,content, type, users_mail) values('2019-05-19 06:55:40.05','2019-05-19 06:55:49.05','438419SDF','[
+INSERT INTO ACTIVITIES (timestampinitial, timestampend, id_machine,content, type, users_mail) values('2019-05-19 06:55:40.05','2019-05-19 06:55:49.05','TCM1','[
   {
     "Timestamp": "2019-05-19 06:55:40.05"
   },

@@ -9,31 +9,29 @@ import java.time.temporal.TemporalUnit;
 
 public class Milestone {
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate initialDate;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate finalDate;
+    private LocalDate dateinitial;
+    private LocalDate dateend;
     private float target;
-    private String usersMail;
+    private String users_mail;
     private double progress;
 
 
     public Milestone() {}
 
     public Milestone(MilestoneBuilder builder) {
-        initialDate = builder.initialDate;
-        finalDate = builder.finalDate;
+        dateinitial = builder.dateinitial;
+        dateend = builder.dateend;
         target = builder.target;
-        usersMail = builder.usersMail;
+        users_mail = builder.users_mail;
     }
 
     @Override
     public String toString() {
         return "Milestone{" +
-                "initialDate=" + initialDate +
-                ", finalDate=" + finalDate +
+                "dateinitial=" + dateinitial +
+                ", dateend=" + dateend +
                 ", target=" + target +
-                ", usersMail=" + usersMail +
+                ", users_mail=" + users_mail +
                 '}';
     }
 
@@ -42,30 +40,40 @@ public class Milestone {
         if(o == this) return true;
         if(!(o instanceof Milestone)) return false;
         Milestone u = (Milestone) o;
-        return u.initialDate.equals(this.initialDate) && u.finalDate.equals(this.finalDate) && u.usersMail.equals(this.usersMail);
+        return u.dateinitial.equals(this.dateinitial) && u.dateend.equals(this.dateend) && u.users_mail.equals(this.users_mail);
     }
 
-    public LocalDate getInitialDate() { return initialDate;  }
+    public LocalDate getDateinitial() {
+        return dateinitial;
+    }
 
-    public LocalDate getFinalDate() {
-        return finalDate;
+    public void setDateinitial(LocalDate dateinitial) {
+        this.dateinitial = dateinitial;
+    }
+
+    public LocalDate getDateend() {
+        return dateend;
+    }
+
+    public void setDateend(LocalDate dateend) {
+        this.dateend = dateend;
     }
 
     public float getTarget() {
         return target;
     }
 
-    public String getUsersMail() {
-        return usersMail;
+    public void setTarget(float target) {
+        this.target = target;
     }
 
-    public void setInitialDate(LocalDate initialDate) { this.initialDate = initialDate; }
+    public String getUsers_mail() {
+        return users_mail;
+    }
 
-    public void setFinalDate(LocalDate finalDate) { this.finalDate = finalDate; }
-
-    public void setTarget(float target) { this.target = target; }
-
-    public void setUsersMail(String usersMail) { this.usersMail = usersMail; }
+    public void setUsers_mail(String users_mail) {
+        this.users_mail = users_mail;
+    }
 
     public void setProgress(double progress) { this.progress = progress; }
 
@@ -74,20 +82,20 @@ public class Milestone {
     public double getProgressPercent() { return 100*this.progress/this.target; }
 
     public static class MilestoneBuilder {
-        private LocalDate initialDate;
-        private LocalDate finalDate;
+        private LocalDate dateinitial;
+        private LocalDate dateend;
         private float target;
-        private String usersMail;
+        private String users_mail;
 
         public MilestoneBuilder() {}
 
-        public MilestoneBuilder initialDate(LocalDate initialDate) {
-            this.initialDate = initialDate;
+        public MilestoneBuilder dateinitial(LocalDate dateinitial) {
+            this.dateinitial = dateinitial;
             return this;
         }
 
-        public MilestoneBuilder finalDate(LocalDate finalDate) {
-            this.finalDate = finalDate;
+        public MilestoneBuilder dateend(LocalDate dateend) {
+            this.dateend = dateend;
             return this;
         }
 
@@ -96,8 +104,8 @@ public class Milestone {
             return this;
         }
 
-        public MilestoneBuilder usersMail(String usersMail) {
-            this.usersMail = usersMail;
+        public MilestoneBuilder users_mail(String users_mail) {
+            this.users_mail = users_mail;
             return this;
         }
 

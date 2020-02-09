@@ -4,9 +4,9 @@ package com.example.hackathonbaldragas.WebController;
 import com.example.hackathonbaldragas.controller.ControllerDAO;
 import com.example.hackathonbaldragas.domain.Activity;
 import com.example.hackathonbaldragas.domain.User;
-import com.example.hackathonbaldragas.domain.UserFilter;
+
 import com.example.hackathonbaldragas.domain.Milestone;
-import com.example.hackathonbaldragas.domain.Request;
+
 import com.example.hackathonbaldragas.domain.User;
 import com.opencsv.CSVReader;
 import org.springframework.stereotype.Controller;
@@ -75,7 +75,7 @@ public class WebController {
     @PostMapping("createMilestone/{userMail}")
     public String post_createMilestone(@PathVariable String userMail, Model model, @ModelAttribute Milestone milestone){
         try{
-            milestone.setUsersMail(userMail);
+            milestone.setUsers_mail(userMail);
             controllerDAO.insertMileStone(milestone);
         }catch(Exception e){
             e.printStackTrace();

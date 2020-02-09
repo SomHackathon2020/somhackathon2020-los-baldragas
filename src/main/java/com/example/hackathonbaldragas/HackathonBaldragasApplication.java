@@ -114,6 +114,11 @@ public class HackathonBaldragasApplication implements CommandLineRunner {
             }
         }
 
+        controllerDAO.insertMileStone(new Milestone.MilestoneBuilder()
+                        .dateinitial(LocalDate.of(1990,10,10)).dateend(LocalDate.of(1990,10,10)).target(150).users_mail("laia@mataro.com").build());
+
+        controllerDAO.findAllMilestones().forEach(System.out::println);
+
         /*controllerDAO.findAllCategories().forEach(System.out::println);
 
         controllerDAO.findAllRequests().forEach(System.out::println);
