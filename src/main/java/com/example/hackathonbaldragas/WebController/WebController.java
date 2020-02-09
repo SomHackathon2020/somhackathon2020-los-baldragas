@@ -142,7 +142,7 @@ public class WebController {
 
     @GetMapping("/map/Parcs")
     public String mapParcs(Model model){
-        return "mapParcs";
+        return "index";
     }
 
     @GetMapping("/map/CAPS")
