@@ -127,9 +127,11 @@ public class WebController {
 
     @GetMapping("/activity/{mail}")
     public String activity(@PathVariable String mail, Model model){
-        List<Activity> list = controllerDAO.findActivitiesByUser(mail);
-        model.addAttribute("activities", list);
-        return "activity";
+        List<Activity> listActivity = controllerDAO.findActivitiesByUser(mail);
+        List<Milestone> listMilestone = controllerDAO.findMilestonesByUser(mail);
+        model.addAttribute("activities", listActivity);
+        model.addAttribute("milestones", listMilestone);
+        return "activityboot";
     }
 
 
@@ -142,7 +144,7 @@ public class WebController {
 
     @GetMapping("/map/Parcs")
     public String mapParcs(Model model){
-        return "index";
+        return "mapParcs";
     }
 
     @GetMapping("/map/CAPS")
